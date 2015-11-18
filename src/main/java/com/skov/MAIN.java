@@ -55,7 +55,6 @@ public class MAIN extends JPanel implements ActionListener {
         addButton("Vagt");
         addButton("Release master");
 
-
     }
 
     void addButton(String name) {

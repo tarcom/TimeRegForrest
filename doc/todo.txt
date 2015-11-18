@@ -1,1 +1,7 @@
 app icon
+label with txt, and then + and - buttons for submitions
+reset button
+write submitted times to file
+add "left work at" time field
+read configuration from file
+sort most used accounts so that most used is first

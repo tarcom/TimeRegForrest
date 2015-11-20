@@ -49,11 +49,18 @@ public class MAIN extends JPanel implements ActionListener {
         add(new JLabel(""));
 
 
-        addButton("Frokost (og andre pauser)");
+        addButton("Daglig forvaltning");
+        addButton("Egen administration");
+        addButton("Other");
+        addButton("Møder Xportalen");
         addButton("TK moeder");
-        addButton("TIN oplysninger");
-        addButton("Vagt");
-        addButton("Release master");
+        addButton("Frokost (og andre pauser)");
+        addButton("Sagscontainer daglig forv.");
+        addButton("Ny 1");
+        addButton("Ny 2");
+        addButton("Ny 3");
+        addButton("Ny 4");
+
 
     }
 
@@ -82,12 +89,25 @@ public class MAIN extends JPanel implements ActionListener {
         timeRegTimeMap.put(e.getActionCommand(), time + 15);
         button.setText(e.getActionCommand() + ": " + timeRegTimeMap.get(e.getActionCommand()) + " min");
 
-        HandleSetTIme();
+        handleSetTIme();
 
     }
 
-    static private void HandleSetTIme() {
+    static private void handleSetTIme() {
         txtFieldInOffice.getText();
+        Calendar dateTimeOfficeIn = getDateTimeOfficeIn();
+        if (dateTimeOfficeIn == null) {
+            return;
+        }
+
+        txtFieldInOffice.setBackground(new Color(0, 255, 0));
+
+        updateTimeInfoLabel();
+
+        return;
+    }
+
+    private static Calendar getDateTimeOfficeIn() {
         Calendar dateTimeOfficeIn = Calendar.getInstance();
         try {
             Date dateTimeOfficeInDate = sdf.parse(txtFieldInOffice.getText().trim());
@@ -98,25 +118,27 @@ public class MAIN extends JPanel implements ActionListener {
 
             e1.printStackTrace();
             txtFieldInOffice.setBackground(new Color(255, 0, 0));
-            return;
+            return null;
         }
-        txtFieldInOffice.setBackground(new Color(0, 255, 0));
-
-        updateTimeInfoLabel(dateTimeOfficeIn);
-
-        return;
+        return dateTimeOfficeIn;
     }
 
-    private static void updateTimeInfoLabel(Calendar dateTimeOfficeIn) {
+    private static void updateTimeInfoLabel() {
         if (txtFieldInOffice.getBackground().getGreen() == 255) {
-            Calendar now = Calendar.getInstance();
-            long minutesToSubmit = (now.getTimeInMillis() - dateTimeOfficeIn.getTimeInMillis()) / 1000 / 60;
-
-            minutesToSubmit -= getAllreadySubmittetMinutes();
+            long minutesToSubmit = getMinutesToSubmit();
 
             timeInfoLabel.setText("Please submit " + minutesToSubmit + " minuts");
         }
 
+    }
+
+    private static long getMinutesToSubmit() {
+        Calendar now = Calendar.getInstance();
+        Calendar dateTimeOfficeIn = getDateTimeOfficeIn();
+        long minutesToSubmit = (now.getTimeInMillis() - dateTimeOfficeIn.getTimeInMillis()) / 1000 / 60;
+
+        minutesToSubmit -= getAllreadySubmittetMinutes();
+        return minutesToSubmit;
     }
 
 
@@ -169,18 +191,18 @@ public class MAIN extends JPanel implements ActionListener {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(60 * 1000);
+                        Thread.sleep(10 * 1000);
                         System.out.println("updating time...");
 
-                        for (int i = 0 ; i < 5 ; i++) {
-                            txtFieldInOffice.setBackground(new Color(255, 0, 0));
-                            Thread.sleep(100);
-                            txtFieldInOffice.setBackground(new Color(0, 255, 0));
-                            Thread.sleep(100);
-                            txtFieldInOffice.setBackground(new Color(0, 0, 255));
-                            Thread.sleep(100);
+                        handleSetTIme();
+
+                        if (getMinutesToSubmit() > 14) {
+                            setGUIInForground();
+                            System.out.println("setting GUI in forground now");
+                            doBlink();
                         }
-                        HandleSetTIme();
+
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -188,28 +210,28 @@ public class MAIN extends JPanel implements ActionListener {
             }
         }).start();
 
+    }
 
-        new Thread(new Runnable() {
-            public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(2 * 60 * 1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    frame.setVisible(true);
-                    int state = frame.getExtendedState();
-                    state &= ~JFrame.ICONIFIED;
-                    frame.setExtendedState(state);
-                    frame.setAlwaysOnTop(true);
-                    frame.toFront();
-                    frame.requestFocus();
-                    frame.setAlwaysOnTop(false);
+    private static void setGUIInForground() {
+        frame.setVisible(true);
+        int state = frame.getExtendedState();
+        state &= ~JFrame.ICONIFIED;
+        frame.setExtendedState(state);
+        frame.setAlwaysOnTop(true);
+        frame.toFront();
+        frame.requestFocus();
+        frame.setAlwaysOnTop(false);
+    }
 
-                    System.out.println("setting GUI in forground now");
-                }
-            }
-        }).start();
+    private static void doBlink() throws InterruptedException {
+        for (int i = 0 ; i < 5 ; i++) {
+            txtFieldInOffice.setBackground(new Color(255, 0, 0));
+            Thread.sleep(100);
+            txtFieldInOffice.setBackground(new Color(0, 255, 0));
+            Thread.sleep(100);
+            txtFieldInOffice.setBackground(new Color(0, 255, 255));
 
+            handleSetTIme();
+        }
     }
 }

@@ -10,3 +10,7 @@ only popup when there are at least 15 minutes to registre
 antal minutter ialt skal omskrives til timer og minutter
 
 Man skal kunne selv kunne skrive hvad opgaverne er... Måske en default opstilling...
+
+når man har registreret, så skal appen selv minimere
+
+appen skal side i system tray istedet og ikke i task-baren

@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="unnamed">
-    <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
-    <root id="archive" name="unnamed.jar">
+  <artifact type="jar" name="TimeRegForrest">
+    <output-path>$PROJECT_DIR$/out/artifacts/TimeRegForrest</output-path>
+    <root id="archive" name="TimeRegForrest.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>

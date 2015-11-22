@@ -59,12 +59,12 @@ public class Gui extends JPanel implements ActionListener {
         addButton("TK moeder");
         addButton("Frokost & pauser");
         addButton("SagsC daglig forv.");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
+        addButton("ny 1");
+        addButton("ny 2");
+        addButton("ny 3");
+        addButton("ny 4");
+        addButton("ny 5");
+        addButton("ny 6");
 
         add(new JLabel("github.com/tarcom/TimeRegForrest"));
 

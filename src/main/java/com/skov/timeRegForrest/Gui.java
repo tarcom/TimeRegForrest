@@ -1,4 +1,4 @@
-package com.skov;
+package com.skov.timeRegForrest;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,23 +12,26 @@ import java.util.HashMap;
 /**
  * yo
  */
-public class MAIN extends JPanel implements ActionListener {
+public class Gui extends JPanel implements ActionListener {
 
     static JFrame frame;
     static HashMap<String, Integer> timeRegTimeMap = new HashMap<String, Integer>();
     static HashMap<String, JButton> timeRegNameMap = new HashMap<String, JButton>();
+    static HashMap<String, JLabel> timeRegSubmittedTimeMap = new HashMap<String, JLabel>();
     static JTextField txtFieldInOffice;
     static JLabel timeInfoLabel;
 
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 
-    public MAIN() {
+    public Gui() {
 
         super.setLayout(new GridLayout(0, 1));
 
 
-        add(new JLabel("When did you meet today?"));
+        JPanel officeInPanel = new JPanel(new GridLayout(1,2));
+
+        officeInPanel.add(new JLabel("When did you meet today?"));
 
 
         Calendar officeInCalendar = Calendar.getInstance();
@@ -40,8 +43,8 @@ public class MAIN extends JPanel implements ActionListener {
         txtFieldInOffice = new JTextField(officeInCalendarStr + " ?");
         txtFieldInOffice.setBackground(new Color(255, 255, 0));
 
-        add(txtFieldInOffice);
-
+        officeInPanel.add(txtFieldInOffice);
+        add(officeInPanel);
 
         timeInfoLabel = new JLabel("Please set office int time");
         add(timeInfoLabel);
@@ -52,55 +55,110 @@ public class MAIN extends JPanel implements ActionListener {
         addButton("Daglig forvaltning");
         addButton("Egen administration");
         addButton("Other");
-        addButton("Møder Xportalen");
+        addButton("Moeder Xportalen");
         addButton("TK moeder");
-        addButton("Frokost (og andre pauser)");
-        addButton("Sagscontainer daglig forv.");
-        addButton("Ny 1");
-        addButton("Ny 2");
-        addButton("Ny 3");
-        addButton("Ny 4");
+        addButton("Frokost & pauser");
+        addButton("SagsC daglig forv.");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
 
 
     }
 
     void addButton(String name) {
 
-        JButton button = new JButton(name + "                     ");
-        button.setVerticalTextPosition(AbstractButton.CENTER);
-        button.setHorizontalTextPosition(AbstractButton.LEADING);
-        button.setMnemonic(KeyEvent.VK_D);
+        JPanel rowPanel = new JPanel(new GridLayout(1,3));
 
-        button.setActionCommand(name);
-        button.setToolTipText("Add 15 minutes");
-        button.addActionListener(this);
+        JTextField textField = new JTextField(name);
+        rowPanel.add(textField);
 
-        add(button);
+        JButton plusButton = new JButton("+");
+        plusButton.setVerticalTextPosition(AbstractButton.CENTER);
+        plusButton.setHorizontalTextPosition(AbstractButton.LEADING);
+        plusButton.setMnemonic(KeyEvent.VK_D);
 
-        timeRegNameMap.put(name, button);
+        plusButton.setActionCommand(name + "Plus");
+        plusButton.setToolTipText("Submit 15 minutes");
+        plusButton.addActionListener(this);
+
+        JButton minusButton = new JButton("-");
+        minusButton.setVerticalTextPosition(AbstractButton.CENTER);
+        minusButton.setHorizontalTextPosition(AbstractButton.LEADING);
+        minusButton.setMnemonic(KeyEvent.VK_D);
+
+        minusButton.setActionCommand(name + "Minus");
+        minusButton.setToolTipText("Submit 15 minutes");
+        minusButton.addActionListener(this);
+
+        JLabel timeSubmittedLabel = new JLabel("");
+
+        JPanel plusMinusPanel = new JPanel(new GridLayout(1,3));
+        plusMinusPanel.add(plusButton);
+        plusMinusPanel.add(minusButton);
+        plusMinusPanel.add(timeSubmittedLabel);
+        rowPanel.add(plusMinusPanel);
+        add(rowPanel);
+
+        timeRegNameMap.put(name, plusButton);
+        timeRegSubmittedTimeMap.put(name, timeSubmittedLabel);
         timeRegTimeMap.put(name, 0);
 
     }
 
     public void actionPerformed(ActionEvent e) {
 
-        JButton button = timeRegNameMap.get(e.getActionCommand());
-        Integer time = timeRegTimeMap.get(e.getActionCommand());
-        timeRegTimeMap.put(e.getActionCommand(), time + 15);
-        button.setText(e.getActionCommand() + ": " + timeRegTimeMap.get(e.getActionCommand()) + " min");
+
+        if (e.getActionCommand().endsWith("Plus")) {
+            String plusName = e.getActionCommand().replace("Plus", "");
+
+            timeRegTimeMap.put(plusName, timeRegTimeMap.get(plusName) + 15);
+            timeRegSubmittedTimeMap.get(plusName).setText(convertMinutesToHouersAndMinutes(timeRegTimeMap.get(plusName)));
+        } else if (e.getActionCommand().endsWith("Minus")) {
+            String minusName = e.getActionCommand().replace("Minus", "");
+
+            timeRegTimeMap.put(minusName, timeRegTimeMap.get(minusName) - 15);
+            timeRegSubmittedTimeMap.get(minusName).setText(convertMinutesToHouersAndMinutes(timeRegTimeMap.get(minusName)));
+        }
+
 
         handleSetTIme();
 
     }
 
-    static private void handleSetTIme() {
-        txtFieldInOffice.getText();
+    protected static String convertMinutesToHouersAndMinutes(long minutes) {
+        if (minutes < 0) {
+            return String.valueOf(minutes);
+        }
+
+        String hours = String.valueOf(minutes / 60); //since both are ints, you get an int
+        String minutesLeft = String.valueOf(minutes % 60);
+
+        if (minutesLeft.length() == 1) {
+            minutesLeft = "0" + minutesLeft;
+        }
+
+        if (hours.length() == 1) {
+            hours = "0" + hours;
+        }
+        return hours + ":" + minutesLeft;
+    }
+
+    static protected void handleSetTIme() {
         Calendar dateTimeOfficeIn = getDateTimeOfficeIn();
         if (dateTimeOfficeIn == null) {
             return;
         }
 
-        txtFieldInOffice.setBackground(new Color(0, 255, 0));
+        if (txtFieldInOffice.getText().contains("?")) {
+            txtFieldInOffice.setBackground(new Color(255, 255, 0));
+        } else {
+            txtFieldInOffice.setBackground(new Color(0, 255, 0));
+        }
+
 
         updateTimeInfoLabel();
 
@@ -114,7 +172,7 @@ public class MAIN extends JPanel implements ActionListener {
             dateTimeOfficeIn.setTime(dateTimeOfficeInDate);
 
         } catch (ParseException e1) {
-            System.out.println("no go" + e1);
+            System.out.println("no go: " + e1);
 
             e1.printStackTrace();
             txtFieldInOffice.setBackground(new Color(255, 0, 0));
@@ -124,17 +182,16 @@ public class MAIN extends JPanel implements ActionListener {
     }
 
     private static void updateTimeInfoLabel() {
-        if (txtFieldInOffice.getBackground().getGreen() == 255) {
-            long minutesToSubmit = getMinutesToSubmit();
-
-            timeInfoLabel.setText("Please submit " + minutesToSubmit + " minuts");
-        }
-
+        long minutesToSubmit = getMinutesToSubmit();
+        timeInfoLabel.setText("Please submit " + convertMinutesToHouersAndMinutes(minutesToSubmit) + " minuts");
     }
 
-    private static long getMinutesToSubmit() {
+    protected static long getMinutesToSubmit() {
         Calendar now = Calendar.getInstance();
         Calendar dateTimeOfficeIn = getDateTimeOfficeIn();
+        if (dateTimeOfficeIn == null) {
+            return -1l;
+        }
         long minutesToSubmit = (now.getTimeInMillis() - dateTimeOfficeIn.getTimeInMillis()) / 1000 / 60;
 
         minutesToSubmit -= getAllreadySubmittetMinutes();
@@ -151,8 +208,8 @@ public class MAIN extends JPanel implements ActionListener {
         return duration;
     }
 
-    private static void createGUI() {
-        MAIN buttonContentPane = new MAIN();
+    protected static void createGUI() {
+        Gui buttonContentPane = new Gui();
         buttonContentPane.setOpaque(true);
 
 
@@ -179,40 +236,8 @@ public class MAIN extends JPanel implements ActionListener {
 
     }
 
-    public static void main(String[] args) throws Exception {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createGUI();
-            }
-        });
 
-
-        new Thread(new Runnable() {
-            public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(10 * 1000);
-                        System.out.println("updating time...");
-
-                        handleSetTIme();
-
-                        if (getMinutesToSubmit() > 14) {
-                            setGUIInForground();
-                            System.out.println("setting GUI in forground now");
-                            doBlink();
-                        }
-
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-
-    }
-
-    private static void setGUIInForground() {
+    protected static void setGUIInForground() {
         frame.setVisible(true);
         int state = frame.getExtendedState();
         state &= ~JFrame.ICONIFIED;
@@ -223,7 +248,7 @@ public class MAIN extends JPanel implements ActionListener {
         frame.setAlwaysOnTop(false);
     }
 
-    private static void doBlink() throws InterruptedException {
+    protected static void doBlink() throws InterruptedException {
         for (int i = 0 ; i < 5 ; i++) {
             txtFieldInOffice.setBackground(new Color(255, 0, 0));
             Thread.sleep(100);
@@ -234,4 +259,6 @@ public class MAIN extends JPanel implements ActionListener {
             handleSetTIme();
         }
     }
+
+
 }

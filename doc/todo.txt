@@ -1,16 +1,9 @@
 app icon
-label with txt, and then + and - buttons for submitions
 reset button
 write submitted times to file
 add "left work at" time field
 read configuration from file
 sort most used accounts so that most used is first
-only popup when there are at least 15 minutes to registre
- - only popup, when 15 minutes are ready for submition
-antal minutter ialt skal omskrives til timer og minutter
-
-Man skal kunne selv kunne skrive hvad opgaverne er... Måske en default opstilling...
-
 når man har registreret, så skal appen selv minimere
-
 appen skal side i system tray istedet og ikke i task-baren
+

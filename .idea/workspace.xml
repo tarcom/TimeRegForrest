@@ -7,8 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d55a8f2-0576-479e-91d2-fa06f64c709e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/TimeRegForrest/TimeRegForrest.jar" />
-      <change type="MOVED" beforePath="C:\projects\TimeRegForrest\.idea\artifacts\unnamed.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/TimeRegForrest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/TimeRegForrest/TimeRegForrest.jar" afterPath="$PROJECT_DIR$/out/artifacts/TimeRegForrest/TimeRegForrest.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" afterPath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java" afterPath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/todo.txt" afterPath="$PROJECT_DIR$/doc/todo.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TimeReg.iws" />
@@ -39,13 +41,8 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-              <folding>
-                <element signature="e#202#344#0" expanded="true" />
-                <element signature="e#343#344#0" expanded="true" />
-                <element signature="e#368#1230#0" expanded="true" />
-                <element signature="e#1229#1230#0" expanded="true" />
-              </folding>
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,22 +51,82 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="192" column="23" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
+              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#409#426#0" expanded="true" />
+                <element signature="e#494#511#0" expanded="true" />
                 <element signature="e#587#603#0" expanded="true" />
+                <element signature="e#11453#12015#0" expanded="true" />
+                <element signature="e#12014#12015#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProtectionDomain.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_60/src.zip!/java/security/ProtectionDomain.java">
+      <file leaf-file-name="KeyEvent.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/event/KeyEvent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <caret line="283" column="28" selection-start-line="283" selection-start-column="28" selection-end-line="283" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#65199#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JComboBox.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/javax/swing/JComboBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="193" column="11" selection-start-line="193" selection-start-column="11" selection-end-line="193" selection-end-column="11" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GridBagConstraints.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagConstraints.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="48" column="28" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#22983#0" expanded="false" />
+                <element signature="e#22922#22923#0" expanded="false" />
+                <element signature="e#22979#22980#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GridBagLayout.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagLayout.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="493" column="11" selection-start-line="493" selection-start-column="11" selection-end-line="493" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#90268#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#22560#22561#0" expanded="false" />
+                <element signature="e#22598#22599#0" expanded="false" />
+                <element signature="e#28982#28983#0" expanded="false" />
+                <element signature="e#29021#29022#0" expanded="false" />
+                <element signature="e#30567#30568#0" expanded="false" />
+                <element signature="e#30641#30642#0" expanded="false" />
+                <element signature="e#31117#31118#0" expanded="false" />
+                <element signature="e#31144#31145#0" expanded="false" />
+                <element signature="e#31620#31621#0" expanded="false" />
+                <element signature="e#31647#31648#0" expanded="false" />
+                <element signature="e#32344#32345#0" expanded="false" />
+                <element signature="e#32379#32380#0" expanded="false" />
+                <element signature="e#32568#32569#0" expanded="false" />
+                <element signature="e#32611#32612#0" expanded="false" />
+                <element signature="e#82688#82689#0" expanded="false" />
+                <element signature="e#82735#82736#0" expanded="false" />
+                <element signature="e#83877#83878#0" expanded="false" />
+                <element signature="e#83912#83913#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,8 +144,8 @@
       <file leaf-file-name="todo.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doc/todo.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26666668">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.08186196">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -119,8 +176,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/skov/GuiApp1.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/skov/GridLayoutDemo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/skov/MAIN.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" />
         <option value="$PROJECT_DIR$/doc/todo.txt" />
       </list>
     </option>
@@ -145,10 +202,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="876" />
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1688" />
+    <option name="height" value="1014" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -173,6 +230,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -257,7 +315,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -584,6 +641,9 @@
       <workItem from="1447918250351" duration="300000" />
       <workItem from="1447918686276" duration="4096000" />
       <workItem from="1448159343166" duration="5616000" />
+      <workItem from="1448270201553" duration="3856000" />
+      <workItem from="1448346212937" duration="227000" />
+      <workItem from="1448351618434" duration="7575000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1447884842366</created>
@@ -607,24 +667,26 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27704000" />
+    <option name="totallyTimeSpent" value="39362000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-4" y="-4" width="1688" height="1014" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31989247" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31808037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27688172" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30510753" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27566963" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3046875" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24140401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24053724" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Regex" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -635,10 +697,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Regex" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -664,12 +724,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java</url>
-          <line>114</line>
+          <line>184</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -681,13 +741,207 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#202#344#0" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#368#1230#0" expanded="true" />
-            <element signature="e#1229#1230#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#409#426#0" expanded="true" />
+            <element signature="e#494#511#0" expanded="true" />
+            <element signature="e#587#603#0" expanded="true" />
+            <element signature="e#11453#12015#0" expanded="true" />
+            <element signature="e#12014#12015#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagConstraints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="28" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#22983#0" expanded="false" />
+            <element signature="e#22922#22923#0" expanded="false" />
+            <element signature="e#22979#22980#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="493" column="11" selection-start-line="493" selection-start-column="11" selection-end-line="493" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#90268#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#22560#22561#0" expanded="false" />
+            <element signature="e#22598#22599#0" expanded="false" />
+            <element signature="e#28982#28983#0" expanded="false" />
+            <element signature="e#29021#29022#0" expanded="false" />
+            <element signature="e#30567#30568#0" expanded="false" />
+            <element signature="e#30641#30642#0" expanded="false" />
+            <element signature="e#31117#31118#0" expanded="false" />
+            <element signature="e#31144#31145#0" expanded="false" />
+            <element signature="e#31620#31621#0" expanded="false" />
+            <element signature="e#31647#31648#0" expanded="false" />
+            <element signature="e#32344#32345#0" expanded="false" />
+            <element signature="e#32379#32380#0" expanded="false" />
+            <element signature="e#32568#32569#0" expanded="false" />
+            <element signature="e#32611#32612#0" expanded="false" />
+            <element signature="e#82688#82689#0" expanded="false" />
+            <element signature="e#82735#82736#0" expanded="false" />
+            <element signature="e#83877#83878#0" expanded="false" />
+            <element signature="e#83912#83913#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/todo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#409#426#0" expanded="true" />
+            <element signature="e#494#511#0" expanded="true" />
+            <element signature="e#587#603#0" expanded="true" />
+            <element signature="e#11453#12015#0" expanded="true" />
+            <element signature="e#12014#12015#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagConstraints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="28" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#22983#0" expanded="false" />
+            <element signature="e#22922#22923#0" expanded="false" />
+            <element signature="e#22979#22980#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="493" column="11" selection-start-line="493" selection-start-column="11" selection-end-line="493" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#90268#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#22560#22561#0" expanded="false" />
+            <element signature="e#22598#22599#0" expanded="false" />
+            <element signature="e#28982#28983#0" expanded="false" />
+            <element signature="e#29021#29022#0" expanded="false" />
+            <element signature="e#30567#30568#0" expanded="false" />
+            <element signature="e#30641#30642#0" expanded="false" />
+            <element signature="e#31117#31118#0" expanded="false" />
+            <element signature="e#31144#31145#0" expanded="false" />
+            <element signature="e#31620#31621#0" expanded="false" />
+            <element signature="e#31647#31648#0" expanded="false" />
+            <element signature="e#32344#32345#0" expanded="false" />
+            <element signature="e#32379#32380#0" expanded="false" />
+            <element signature="e#32568#32569#0" expanded="false" />
+            <element signature="e#32611#32612#0" expanded="false" />
+            <element signature="e#82688#82689#0" expanded="false" />
+            <element signature="e#82735#82736#0" expanded="false" />
+            <element signature="e#83877#83878#0" expanded="false" />
+            <element signature="e#83912#83913#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/todo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="192" column="23" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#409#426#0" expanded="true" />
+            <element signature="e#494#511#0" expanded="true" />
+            <element signature="e#587#603#0" expanded="true" />
+            <element signature="e#11453#12015#0" expanded="true" />
+            <element signature="e#12014#12015#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/todo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -711,12 +965,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#202#344#0" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#368#1230#0" expanded="true" />
-            <element signature="e#1229#1230#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -740,12 +989,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#202#344#0" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#368#1230#0" expanded="true" />
-            <element signature="e#1229#1230#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -769,12 +1013,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#202#344#0" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#368#1230#0" expanded="true" />
-            <element signature="e#1229#1230#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -810,22 +1049,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_60/src.zip!/java/security/ProtectionDomain.java">
+    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <caret line="493" column="11" selection-start-line="493" selection-start-column="11" selection-end-line="493" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#90268#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#22560#22561#0" expanded="false" />
+            <element signature="e#22598#22599#0" expanded="false" />
+            <element signature="e#28982#28983#0" expanded="false" />
+            <element signature="e#29021#29022#0" expanded="false" />
+            <element signature="e#30567#30568#0" expanded="false" />
+            <element signature="e#30641#30642#0" expanded="false" />
+            <element signature="e#31117#31118#0" expanded="false" />
+            <element signature="e#31144#31145#0" expanded="false" />
+            <element signature="e#31620#31621#0" expanded="false" />
+            <element signature="e#31647#31648#0" expanded="false" />
+            <element signature="e#32344#32345#0" expanded="false" />
+            <element signature="e#32379#32380#0" expanded="false" />
+            <element signature="e#32568#32569#0" expanded="false" />
+            <element signature="e#32611#32612#0" expanded="false" />
+            <element signature="e#82688#82689#0" expanded="false" />
+            <element signature="e#82735#82736#0" expanded="false" />
+            <element signature="e#83877#83878#0" expanded="false" />
+            <element signature="e#83912#83913#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagConstraints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="28" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#22983#0" expanded="false" />
+            <element signature="e#22922#22923#0" expanded="false" />
+            <element signature="e#22979#22980#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/javax/swing/JComboBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="193" column="11" selection-start-line="193" selection-start-column="11" selection-end-line="193" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
+    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/event/KeyEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="192" column="23" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
+          <caret line="283" column="28" selection-start-line="283" selection-start-column="28" selection-end-line="283" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#409#426#0" expanded="true" />
-            <element signature="e#587#603#0" expanded="true" />
+            <element signature="e#0#65199#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -833,20 +1111,30 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
           <folding>
-            <element signature="e#202#344#0" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#368#1230#0" expanded="true" />
-            <element signature="e#1229#1230#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#409#426#0" expanded="true" />
+            <element signature="e#494#511#0" expanded="true" />
+            <element signature="e#587#603#0" expanded="true" />
+            <element signature="e#11453#12015#0" expanded="true" />
+            <element signature="e#12014#12015#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/todo.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26666668">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.08186196">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>

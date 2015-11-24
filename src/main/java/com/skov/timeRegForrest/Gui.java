@@ -18,21 +18,24 @@ public class Gui extends JPanel implements ActionListener {
     static HashMap<String, Integer> timeRegTimeMap = new HashMap<String, Integer>();
     static HashMap<String, JButton> timeRegNameMap = new HashMap<String, JButton>();
     static HashMap<String, JLabel> timeRegSubmittedTimeMap = new HashMap<String, JLabel>();
-    static JTextField txtFieldInOffice;
+    static JTextField txtFieldInOffice, txtFieldOutOffice;
     static JLabel timeInfoLabel;
+    static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox;
+    static JCheckBox autoMinimizeCheckBox, autoUpdateOfficeOutCheckBox;
+//    static HashMap<Integer, Integer> taskIds = new HashMap<Integer, Integer>();
+//    static int taskIdNext = 0;
+
 
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 
     public Gui() {
-
         super.setLayout(new GridLayout(0, 1));
 
-
+        //--
         JPanel officeInPanel = new JPanel(new GridLayout(1,2));
 
-        officeInPanel.add(new JLabel("When did you meet today?"));
-
+        officeInPanel.add(new JLabel("Office IN:"));
 
         Calendar officeInCalendar = Calendar.getInstance();
         officeInCalendar.set(Calendar.HOUR_OF_DAY, 8);
@@ -45,35 +48,97 @@ public class Gui extends JPanel implements ActionListener {
 
         officeInPanel.add(txtFieldInOffice);
         add(officeInPanel);
+        //--
+
+
+        //--
+        JPanel officeOutPanel = new JPanel(new GridLayout(1,2));
+
+        txtFieldOutOffice = new JTextField(sdf.format(Calendar.getInstance().getTime()));
+
+        autoUpdateOfficeOutCheckBox = new JCheckBox("Office OUT:");
+        autoUpdateOfficeOutCheckBox.setSelected(true);
+        officeOutPanel.add(autoUpdateOfficeOutCheckBox);
+
+        officeOutPanel.add(txtFieldOutOffice);
+        add(officeOutPanel);
+        //--
+
+
+        //--
+        String minutes = " minutes";
+        String[] minutValuesArr = {"1" + minutes, "5" + minutes, "10" + minutes, "15" + minutes, "30" + minutes, "45" + minutes, "60" + minutes, "90" + minutes, "120 minute", "180" + minutes, "240" + minutes};
+        popupIntervalComboBox = new JComboBox(minutValuesArr);
+        popupIntervalComboBox.setSelectedIndex(4);
+
+        JPanel popupIntervalPanel = new JPanel(new GridLayout());
+        popupIntervalPanel.add(new JLabel("Gui popup interval: "));
+        popupIntervalPanel.add(popupIntervalComboBox);
+        add(popupIntervalPanel);
+
+        //--
+
+        //--
+        submitDurationMinutesComboBox = new JComboBox(minutValuesArr);
+        submitDurationMinutesComboBox.setSelectedIndex(3);
+
+        JPanel submitDurationPanel = new JPanel(new GridLayout());
+        submitDurationPanel.add(new JLabel("Submit duration: "));
+        submitDurationPanel.add(submitDurationMinutesComboBox);
+        add(submitDurationPanel);
+        //--
+
+        //--
+        autoMinimizeCheckBox = new JCheckBox("Auto minimize");
+        autoMinimizeCheckBox.setSelected(true);
+        add(autoMinimizeCheckBox);
+
+        //--
+
+
+        add(new JLabel(""));
 
         timeInfoLabel = new JLabel("Please set office int time");
         add(timeInfoLabel);
 
-        add(new JLabel(""));
 
 
-        addButton("Daglig forvaltning");
-        addButton("Egen administration");
-        addButton("Other");
-        addButton("Moeder Xportalen");
-        addButton("TK moeder");
-        addButton("Frokost & pauser");
-        addButton("SagsC daglig forv.");
-        addButton("ny 1");
-        addButton("ny 2");
-        addButton("ny 3");
-        addButton("ny 4");
-        addButton("ny 5");
-        addButton("ny 6");
+        addButton("Daglig forvaltning", KeyEvent.VK_1);
+        addButton("Egen administration", KeyEvent.VK_2);
+        addButton("Other", KeyEvent.VK_3);
+        addButton("Moeder Xportalen", KeyEvent.VK_4);
+        addButton("TK moeder", KeyEvent.VK_5);
+        addButton("Frokost & pauser", KeyEvent.VK_6);
+        addButton("SagsC daglig forv.", KeyEvent.VK_7);
+        addButton("ny 1", KeyEvent.VK_8);
+        addButton("ny 2", KeyEvent.VK_9);
+        addButton("ny 3", KeyEvent.VK_0);
+        addButton("ny 4", KeyEvent.VK_A);
+        addButton("ny 5", KeyEvent.VK_B);
+        addButton("ny 6", KeyEvent.VK_C);
 
         add(new JLabel("github.com/tarcom/TimeRegForrest"));
 
 
     }
 
-    void addButton(String name) {
+    protected static void updateTxtFieldOutOffice() {
+        if (autoUpdateOfficeOutCheckBox.isSelected()) {
+            txtFieldOutOffice.setText(sdf.format(Calendar.getInstance().getTime()));
+        }
+    }
 
-        JPanel rowPanel = new JPanel(new GridLayout(1,3));
+    protected static int getPopupIntervalMinutes() {
+        return Integer.valueOf(((String) Gui.popupIntervalComboBox.getSelectedItem()).replace(" minutes", "").trim());
+    }
+
+    protected static int getSubmitDurationMinutes() {
+        return Integer.valueOf(((String) Gui.submitDurationMinutesComboBox.getSelectedItem()).replace(" minutes", "").trim());
+    }
+
+    void addButton(String name, int shortcutKey) {
+
+        JPanel rowPanel = new JPanel(new GridLayout());
 
         JTextField textField = new JTextField(name);
         rowPanel.add(textField);
@@ -86,6 +151,7 @@ public class Gui extends JPanel implements ActionListener {
         plusButton.setActionCommand(name + "Plus");
         plusButton.setToolTipText("Submit 15 minutes");
         plusButton.addActionListener(this);
+        plusButton.setMnemonic(shortcutKey);
 
         JButton minusButton = new JButton("-");
         minusButton.setVerticalTextPosition(AbstractButton.CENTER);
@@ -103,7 +169,11 @@ public class Gui extends JPanel implements ActionListener {
         plusMinusPanel.add(minusButton);
         plusMinusPanel.add(timeSubmittedLabel);
         rowPanel.add(plusMinusPanel);
-        add(rowPanel);
+
+        JPanel p = new JPanel(new GridBagLayout());
+        p.add(new JLabel(String.valueOf("ALT+" + KeyEvent.getKeyText(shortcutKey))));
+        p.add(rowPanel);
+        add(p);
 
         timeRegNameMap.put(name, plusButton);
         timeRegSubmittedTimeMap.put(name, timeSubmittedLabel);
@@ -117,12 +187,17 @@ public class Gui extends JPanel implements ActionListener {
         if (e.getActionCommand().endsWith("Plus")) {
             String plusName = e.getActionCommand().replace("Plus", "");
 
-            timeRegTimeMap.put(plusName, timeRegTimeMap.get(plusName) + 15);
+            timeRegTimeMap.put(plusName, timeRegTimeMap.get(plusName) + getSubmitDurationMinutes());
             timeRegSubmittedTimeMap.get(plusName).setText(convertMinutesToHouersAndMinutes(timeRegTimeMap.get(plusName)));
+
+            if (autoMinimizeCheckBox.isSelected() && getMinutesToSubmit() < getSubmitDurationMinutes()) {
+                frame.setState(Frame.ICONIFIED);
+            }
+
         } else if (e.getActionCommand().endsWith("Minus")) {
             String minusName = e.getActionCommand().replace("Minus", "");
 
-            timeRegTimeMap.put(minusName, timeRegTimeMap.get(minusName) - 15);
+            timeRegTimeMap.put(minusName, timeRegTimeMap.get(minusName) - getSubmitDurationMinutes());
             timeRegSubmittedTimeMap.get(minusName).setText(convertMinutesToHouersAndMinutes(timeRegTimeMap.get(minusName)));
         }
 
@@ -167,6 +242,31 @@ public class Gui extends JPanel implements ActionListener {
         return;
     }
 
+    /**
+     * DO HANDLE NULL!!!
+     * @return
+     */
+    private static Calendar getDateTimeOfficeOut() {
+        Calendar dateTimeOfficeOut = Calendar.getInstance();
+        try {
+            Date dateTimeOfficeOutDate = sdf.parse(txtFieldOutOffice.getText().trim());
+            dateTimeOfficeOut.setTime(dateTimeOfficeOutDate);
+
+        } catch (ParseException e1) {
+            System.out.println("no go getting office OUT: " + e1);
+
+            e1.printStackTrace();
+            txtFieldOutOffice.setBackground(new Color(255, 0, 0));
+            return null;
+        }
+        txtFieldOutOffice.setBackground(new Color(255, 255, 255));
+        return dateTimeOfficeOut;
+    }
+
+    /**
+     * DO HANDLE NULL!!
+     * @return
+     */
     private static Calendar getDateTimeOfficeIn() {
         Calendar dateTimeOfficeIn = Calendar.getInstance();
         try {
@@ -174,7 +274,7 @@ public class Gui extends JPanel implements ActionListener {
             dateTimeOfficeIn.setTime(dateTimeOfficeInDate);
 
         } catch (ParseException e1) {
-            System.out.println("no go: " + e1);
+            System.out.println("no go getting office IN: " + e1);
 
             e1.printStackTrace();
             txtFieldInOffice.setBackground(new Color(255, 0, 0));
@@ -185,11 +285,23 @@ public class Gui extends JPanel implements ActionListener {
 
     private static void updateTimeInfoLabel() {
         long minutesToSubmit = getMinutesToSubmit();
-        timeInfoLabel.setText("Please submit " + convertMinutesToHouersAndMinutes(minutesToSubmit) + " minuts");
+        timeInfoLabel.setText("<html><font color='red'>Please submit " + convertMinutesToHouersAndMinutes(minutesToSubmit) +
+                " minuts</font> (total: " + convertMinutesToHouersAndMinutes(getTotalSubmittedMinutes()) + ")</html>");
+    }
+
+    protected static int getTotalSubmittedMinutes() {
+        int totalSubmittedMinutes = 0;
+        for (Integer t : timeRegTimeMap.values()) {
+            totalSubmittedMinutes += t;
+        }
+        return totalSubmittedMinutes;
     }
 
     protected static long getMinutesToSubmit() {
-        Calendar now = Calendar.getInstance();
+        Calendar now = getDateTimeOfficeOut();
+        if (now == null) {
+            return 0;
+        }
         Calendar dateTimeOfficeIn = getDateTimeOfficeIn();
         if (dateTimeOfficeIn == null) {
             return -1l;

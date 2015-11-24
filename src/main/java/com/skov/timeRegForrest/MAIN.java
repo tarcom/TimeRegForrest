@@ -22,10 +22,11 @@ public class MAIN {
                     try {
                         Thread.sleep(1 * 1000);
                         System.out.println("updating time...");
+                        Gui.updateTxtFieldOutOffice();
 
                         Gui.handleSetTIme();
 
-                        if ((Gui.getMinutesToSubmit() % 15) == 0) { //on every 15 sharp minute, lets bring the GUI in front
+                        if ((Gui.getMinutesToSubmit() % Gui.getPopupIntervalMinutes()) == 0 && Gui.getMinutesToSubmit() > 1) { //on every 15 sharp minute, lets bring the GUI in front
                             if (new Date().getSeconds() == 0) {
                                 Gui.setGUIInForground();
                                 System.out.println("setting GUI in forground now");

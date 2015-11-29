@@ -21,7 +21,7 @@ public class MAIN {
                 while (true) {
                     try {
                         Thread.sleep(1 * 1000);
-                        System.out.println("updating time...");
+                        //System.out.println("updating time...");
                         Gui.updateTxtFieldOutOffice();
 
                         Gui.handleSetTIme();
@@ -41,6 +41,8 @@ public class MAIN {
                 }
             }
         }).start();
+
+        IdioticDesktShortcutsRemover.doDelete();
 
     }
 

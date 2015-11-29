@@ -3,8 +3,11 @@ package com.skov.timeRegForrest;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,11 +20,12 @@ public class Gui extends JPanel implements ActionListener {
     static JFrame frame;
     static HashMap<String, Integer> timeRegTimeMap = new HashMap<String, Integer>();
     static HashMap<String, JButton> timeRegNameMap = new HashMap<String, JButton>();
-    static HashMap<String, JLabel> timeRegSubmittedTimeMap = new HashMap<String, JLabel>();
+    static HashMap<String, JButton> timeRegSubmittedTimeMap = new HashMap<String, JButton>();
     static JTextField txtFieldInOffice, txtFieldOutOffice;
     static JLabel timeInfoLabel;
     static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox;
     static JCheckBox autoMinimizeCheckBox, autoUpdateOfficeOutCheckBox;
+    static ArrayList<Integer> shortCutList = new ArrayList<Integer>();
 //    static HashMap<Integer, Integer> taskIds = new HashMap<Integer, Integer>();
 //    static int taskIdNext = 0;
 
@@ -47,11 +51,11 @@ public class Gui extends JPanel implements ActionListener {
         txtFieldInOffice.setBackground(new Color(255, 255, 0));
 
         officeInPanel.add(txtFieldInOffice);
+        officeInPanel.add(new JLabel(""));
         add(officeInPanel);
-        //--
-
 
         //--
+
         JPanel officeOutPanel = new JPanel(new GridLayout(1,2));
 
         txtFieldOutOffice = new JTextField(sdf.format(Calendar.getInstance().getTime()));
@@ -61,11 +65,11 @@ public class Gui extends JPanel implements ActionListener {
         officeOutPanel.add(autoUpdateOfficeOutCheckBox);
 
         officeOutPanel.add(txtFieldOutOffice);
+        officeOutPanel.add(new JLabel(""));
         add(officeOutPanel);
-        //--
-
 
         //--
+
         String minutes = " minutes";
         String[] minutValuesArr = {"1" + minutes, "5" + minutes, "10" + minutes, "15" + minutes, "30" + minutes, "45" + minutes, "60" + minutes, "90" + minutes, "120 minute", "180" + minutes, "240" + minutes};
         popupIntervalComboBox = new JComboBox(minutValuesArr);
@@ -74,9 +78,35 @@ public class Gui extends JPanel implements ActionListener {
         JPanel popupIntervalPanel = new JPanel(new GridLayout());
         popupIntervalPanel.add(new JLabel("Gui popup interval: "));
         popupIntervalPanel.add(popupIntervalComboBox);
+        popupIntervalPanel.add(new JLabel(""));
         add(popupIntervalPanel);
 
         //--
+
+        shortCutList.add(KeyEvent.VK_0);
+        shortCutList.add(KeyEvent.VK_1);
+        shortCutList.add(KeyEvent.VK_2);
+        shortCutList.add(KeyEvent.VK_3);
+        shortCutList.add(KeyEvent.VK_4);
+        shortCutList.add(KeyEvent.VK_5);
+        shortCutList.add(KeyEvent.VK_6);
+        shortCutList.add(KeyEvent.VK_7);
+        shortCutList.add(KeyEvent.VK_8);
+        shortCutList.add(KeyEvent.VK_9);
+        shortCutList.add(KeyEvent.VK_A);
+        shortCutList.add(KeyEvent.VK_B);
+        shortCutList.add(KeyEvent.VK_C);
+        shortCutList.add(KeyEvent.VK_D);
+        shortCutList.add(KeyEvent.VK_E);
+        shortCutList.add(KeyEvent.VK_F);
+        shortCutList.add(KeyEvent.VK_G);
+        shortCutList.add(KeyEvent.VK_H);
+        shortCutList.add(KeyEvent.VK_I);
+        shortCutList.add(KeyEvent.VK_J);
+        shortCutList.add(KeyEvent.VK_K);
+        shortCutList.add(KeyEvent.VK_L);
+        shortCutList.add(KeyEvent.VK_M);
+        shortCutList.add(KeyEvent.VK_N);
 
         //--
         submitDurationMinutesComboBox = new JComboBox(minutValuesArr);
@@ -85,6 +115,7 @@ public class Gui extends JPanel implements ActionListener {
         JPanel submitDurationPanel = new JPanel(new GridLayout());
         submitDurationPanel.add(new JLabel("Submit duration: "));
         submitDurationPanel.add(submitDurationMinutesComboBox);
+        submitDurationPanel.add(new JLabel(""));
         add(submitDurationPanel);
         //--
 
@@ -103,19 +134,24 @@ public class Gui extends JPanel implements ActionListener {
 
 
 
-        addButton("Daglig forvaltning", KeyEvent.VK_1);
-        addButton("Egen administration", KeyEvent.VK_2);
-        addButton("Other", KeyEvent.VK_3);
-        addButton("Moeder Xportalen", KeyEvent.VK_4);
-        addButton("TK moeder", KeyEvent.VK_5);
-        addButton("Frokost & pauser", KeyEvent.VK_6);
-        addButton("SagsC daglig forv.", KeyEvent.VK_7);
-        addButton("ny 1", KeyEvent.VK_8);
-        addButton("ny 2", KeyEvent.VK_9);
-        addButton("ny 3", KeyEvent.VK_0);
-        addButton("ny 4", KeyEvent.VK_A);
-        addButton("ny 5", KeyEvent.VK_B);
-        addButton("ny 6", KeyEvent.VK_C);
+        addButton("Daglig forvaltning", 864);
+        addButton("Egen administration", 1005);
+        addButton("Other", 885);
+        addButton("Moeder Xportalen", 870);
+        addButton("TK-moeder", 873);
+        addButton("Sagscontainer daglig forv.", 882);
+        addButton("Dokumentation", 881);
+        addButton("Teatching Xportalen", 880);
+        addButton("Testmiljøer", 871);
+
+        addButton("ny 1");
+        addButton("ny 2");
+        addButton("ny 3");
+        addButton("ny 4");
+        addButton("ny 5");
+        addButton("ny 6");
+
+        addButton("Frokost & pauser");
 
         add(new JLabel("github.com/tarcom/TimeRegForrest"));
 
@@ -136,12 +172,32 @@ public class Gui extends JPanel implements ActionListener {
         return Integer.valueOf(((String) Gui.submitDurationMinutesComboBox.getSelectedItem()).replace(" minutes", "").trim());
     }
 
-    void addButton(String name, int shortcutKey) {
+    void addButton(String name, int... jiraNumber) {
 
-        JPanel rowPanel = new JPanel(new GridLayout());
+        JPanel rowPanel = new JPanel(new GridBagLayout());
 
-        JTextField textField = new JTextField(name);
-        rowPanel.add(textField);
+        int shortcutKey = shortCutList.remove(0);
+
+        //--
+
+        rowPanel.add(new JLabel(String.valueOf(" ALT+" + KeyEvent.getKeyText(shortcutKey) + " ")));
+
+        //--
+
+        JTextField descriptionTxtField = new JTextField(name, 20);
+        rowPanel.add(descriptionTxtField);
+
+        //--
+
+        String jiraNumberLink = "XP-";
+        if (jiraNumber != null && jiraNumber.length == 1) {
+            jiraNumberLink = "XP-" + jiraNumber[0];
+        }
+
+        JTextField jiraLinkField = new JTextField(jiraNumberLink, 5);
+        rowPanel.add(jiraLinkField);
+
+        //--
 
         JButton plusButton = new JButton("+");
         plusButton.setVerticalTextPosition(AbstractButton.CENTER);
@@ -153,6 +209,12 @@ public class Gui extends JPanel implements ActionListener {
         plusButton.addActionListener(this);
         plusButton.setMnemonic(shortcutKey);
 
+        rowPanel.add(plusButton);
+
+        timeRegNameMap.put(name, plusButton);
+
+        //--
+
         JButton minusButton = new JButton("-");
         minusButton.setVerticalTextPosition(AbstractButton.CENTER);
         minusButton.setHorizontalTextPosition(AbstractButton.LEADING);
@@ -162,33 +224,37 @@ public class Gui extends JPanel implements ActionListener {
         minusButton.setToolTipText("Submit 15 minutes");
         minusButton.addActionListener(this);
 
-        JLabel timeSubmittedLabel = new JLabel("");
+        rowPanel.add(minusButton);
 
-        JPanel plusMinusPanel = new JPanel(new GridLayout(1,3));
-        plusMinusPanel.add(plusButton);
-        plusMinusPanel.add(minusButton);
-        plusMinusPanel.add(timeSubmittedLabel);
-        rowPanel.add(plusMinusPanel);
+        //--
 
-        JPanel p = new JPanel(new GridBagLayout());
-        p.add(new JLabel(String.valueOf("ALT+" + KeyEvent.getKeyText(shortcutKey))));
-        p.add(rowPanel);
-        add(p);
+        JButton timeSubmittedLabel = new JButton("          ");
+        timeSubmittedLabel.setToolTipText("Click to open browser and submit time in JIRA " + jiraNumberLink);
+        timeSubmittedLabel.setActionCommand(jiraNumberLink);
+        timeSubmittedLabel.setBorderPainted(false);
+        timeSubmittedLabel.addActionListener(this);
+        rowPanel.add(timeSubmittedLabel);
 
-        timeRegNameMap.put(name, plusButton);
         timeRegSubmittedTimeMap.put(name, timeSubmittedLabel);
         timeRegTimeMap.put(name, 0);
+
+        //--
+
+        add(rowPanel);
 
     }
 
     public void actionPerformed(ActionEvent e) {
 
-
         if (e.getActionCommand().endsWith("Plus")) {
             String plusName = e.getActionCommand().replace("Plus", "");
 
             timeRegTimeMap.put(plusName, timeRegTimeMap.get(plusName) + getSubmitDurationMinutes());
-            timeRegSubmittedTimeMap.get(plusName).setText(convertMinutesToHouersAndMinutes(timeRegTimeMap.get(plusName)));
+            String time = convertMinutesToHouersAndMinutes(timeRegTimeMap.get(plusName));
+            String submitTimeTxt = "<html><FONT color=\"#000099\"><U>" + time + "</U></FONT></HTML>";
+
+
+            timeRegSubmittedTimeMap.get(plusName).setText(submitTimeTxt);
 
             if (autoMinimizeCheckBox.isSelected() && getMinutesToSubmit() < getSubmitDurationMinutes()) {
                 frame.setState(Frame.ICONIFIED);
@@ -199,11 +265,22 @@ public class Gui extends JPanel implements ActionListener {
 
             timeRegTimeMap.put(minusName, timeRegTimeMap.get(minusName) - getSubmitDurationMinutes());
             timeRegSubmittedTimeMap.get(minusName).setText(convertMinutesToHouersAndMinutes(timeRegTimeMap.get(minusName)));
+        } else if (e.getActionCommand().startsWith("XP-") && e.getActionCommand().length() >= 4) {
+            System.out.println(e.getActionCommand());
+            openUri("http://features.nykreditnet.net/browse/" + e.getActionCommand());
         }
 
 
-        handleSetTIme();
 
+        handleSetTIme();
+    }
+
+    private static void openUri(String uri) {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI(uri));
+            } catch (Exception e) { /* TODO: error handling */ }
+        } else { /* TODO: error handling */ }
     }
 
     protected static String convertMinutesToHouersAndMinutes(long minutes) {
@@ -329,6 +406,7 @@ public class Gui extends JPanel implements ActionListener {
 
         JFrame.setDefaultLookAndFeelDecorated(true);
         frame = new JFrame("TimeRegForrest");
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.getRootPane().setDefaultButton(button);
         frame.setContentPane(buttonContentPane);
@@ -347,6 +425,7 @@ public class Gui extends JPanel implements ActionListener {
                 }
             }
         });
+        //frame.setSize(1000, 1400);
 
     }
 

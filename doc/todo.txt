@@ -1,6 +1,3 @@
 app icon
-reset button
-write submitted times to file
-read configuration from file
-sort most used accounts so that most used is first
+read configuration from file (or perhaps using the -D startup command...)
 appen skal side i system tray istedet og ikke i task-baren

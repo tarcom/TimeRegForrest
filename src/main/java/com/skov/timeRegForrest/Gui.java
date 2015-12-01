@@ -1,8 +1,10 @@
 package com.skov.timeRegForrest;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.text.ParseException;
@@ -137,7 +139,7 @@ public class Gui extends JPanel implements ActionListener {
         addButton("Daglig forvaltning", 864);
         addButton("Egen administration", 1005);
         addButton("Other", 885);
-        addButton("Moeder Xportalen", 870);
+        addButton("Kanban/Moeder Xportalen", 870);
         addButton("TK-moeder", 873);
         addButton("Sagscontainer daglig forv.", 882);
         addButton("Dokumentation", 881);
@@ -425,6 +427,14 @@ public class Gui extends JPanel implements ActionListener {
                 }
             }
         });
+
+        try {
+            File pathToFile = new File("C:\\projects\\TimeRegForrest\\doc\\icon.png");
+            Image img = ImageIO.read(pathToFile);
+            frame.setIconImage(img);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //frame.setSize(1000, 1400);
 
     }

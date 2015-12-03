@@ -230,7 +230,7 @@ public class Gui extends JPanel implements ActionListener {
 
         //--
 
-        JButton timeSubmittedLabel = new JButton("          ");
+        JButton timeSubmittedLabel = new JButton("           ");
         timeSubmittedLabel.setToolTipText("Click to open browser and submit time in JIRA " + jiraNumberLink);
         timeSubmittedLabel.setActionCommand(jiraNumberLink);
         timeSubmittedLabel.setBorderPainted(false);

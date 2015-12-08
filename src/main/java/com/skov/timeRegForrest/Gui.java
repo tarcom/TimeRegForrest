@@ -23,6 +23,8 @@ public class Gui extends JPanel implements ActionListener {
     static HashMap<String, Integer> timeRegTimeMap = new HashMap<String, Integer>();
     static HashMap<String, JButton> timeRegNameMap = new HashMap<String, JButton>();
     static HashMap<String, JButton> timeRegSubmittedTimeMap = new HashMap<String, JButton>();
+    static HashMap<String, JTextField> jiraNumbersMap = new HashMap<String, JTextField>();
+
     static JTextField txtFieldInOffice, txtFieldOutOffice;
     static JLabel timeInfoLabel;
     static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox;
@@ -136,22 +138,26 @@ public class Gui extends JPanel implements ActionListener {
 
 
 
+        addButton("Kanban / Møder Xportalen", 870);
         addButton("Daglig forvaltning", 864);
         addButton("Egen administration", 1005);
-        addButton("Other", 885);
-        addButton("Kanban/Moeder Xportalen", 870);
-        addButton("TK-moeder", 873);
         addButton("Sagscontainer daglig forv.", 882);
-        addButton("Dokumentation", 881);
-        addButton("Teatching Xportalen", 880);
-        addButton("Testmiljøer", 871);
+        //addButton("Other", 885);
+//        addButton("TK-moeder", 873);
+//        addButton("Dokumentation", 881);
+//        addButton("Teatching Xportalen", 880);
+//        addButton("Testmiljøer", 871);
 
-        addButton("ny 1");
-        addButton("ny 2");
-        addButton("ny 3");
-        addButton("ny 4");
-        addButton("ny 5");
-        addButton("ny 6");
+        addButton("ny0");
+        addButton("ny1");
+        addButton("ny2");
+        addButton("ny3");
+        addButton("ny4");
+        addButton("ny5");
+        addButton("ny6");
+        addButton("ny7");
+        addButton("ny8");
+        addButton("ny9");
 
         addButton("Frokost & pauser");
 
@@ -182,6 +188,7 @@ public class Gui extends JPanel implements ActionListener {
 
         //--
 
+        //todo: I wish I coult set default size for this...
         rowPanel.add(new JLabel(String.valueOf(" ALT+" + KeyEvent.getKeyText(shortcutKey) + " ")));
 
         //--
@@ -197,6 +204,9 @@ public class Gui extends JPanel implements ActionListener {
         }
 
         JTextField jiraLinkField = new JTextField(jiraNumberLink, 5);
+
+        jiraNumbersMap.put("XP-" + String.valueOf(shortcutKey), jiraLinkField);
+
         rowPanel.add(jiraLinkField);
 
         //--
@@ -232,7 +242,7 @@ public class Gui extends JPanel implements ActionListener {
 
         JButton timeSubmittedLabel = new JButton("           ");
         timeSubmittedLabel.setToolTipText("Click to open browser and submit time in JIRA " + jiraNumberLink);
-        timeSubmittedLabel.setActionCommand(jiraNumberLink);
+        timeSubmittedLabel.setActionCommand("XP-" + String.valueOf(shortcutKey));
         timeSubmittedLabel.setBorderPainted(false);
         timeSubmittedLabel.addActionListener(this);
         rowPanel.add(timeSubmittedLabel);
@@ -269,7 +279,10 @@ public class Gui extends JPanel implements ActionListener {
             timeRegSubmittedTimeMap.get(minusName).setText(convertMinutesToHouersAndMinutes(timeRegTimeMap.get(minusName)));
         } else if (e.getActionCommand().startsWith("XP-") && e.getActionCommand().length() >= 4) {
             System.out.println(e.getActionCommand());
-            openUri("http://features.nykreditnet.net/browse/" + e.getActionCommand());
+            String shortCutKey = e.getActionCommand();
+            JTextField jTextField = jiraNumbersMap.get(shortCutKey);
+            String jiraNumber = jTextField.getText().trim();
+            openUri("http://features.nykreditnet.net/browse/" + jiraNumber);
         }
 
 

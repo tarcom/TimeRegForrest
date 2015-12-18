@@ -139,25 +139,24 @@ public class Gui extends JPanel implements ActionListener {
 
 
         addButton("Kanban / Møder Xportalen", 870);
+        addButton("Ikke TK prioriterede opgaver", 878);
         addButton("Daglig forvaltning", 864);
-        addButton("Egen administration", 1005);
         addButton("Sagscontainer daglig forv.", 882);
-        //addButton("Other", 885);
-//        addButton("TK-moeder", 873);
-//        addButton("Dokumentation", 881);
-//        addButton("Teatching Xportalen", 880);
-//        addButton("Testmiljøer", 871);
+        addButton("Driftstabilitet i Xportalen", 883);
+        addButton("Documentation", 881);
+        addButton("Egen administration", 1005);
+        addButton("Other", 885);
 
-        addButton("ny0");
-        addButton("ny1");
-        addButton("ny2");
-        addButton("ny3");
-        addButton("ny4");
-        addButton("ny5");
-        addButton("ny6");
-        addButton("ny7");
-        addButton("ny8");
-        addButton("ny9");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
+        addButton("");
 
         addButton("Frokost & pauser");
 
@@ -185,6 +184,7 @@ public class Gui extends JPanel implements ActionListener {
         JPanel rowPanel = new JPanel(new GridBagLayout());
 
         int shortcutKey = shortCutList.remove(0);
+        String shortcutKeyStr = String.valueOf(shortcutKey);
 
         //--
 
@@ -216,14 +216,14 @@ public class Gui extends JPanel implements ActionListener {
         plusButton.setHorizontalTextPosition(AbstractButton.LEADING);
         plusButton.setMnemonic(KeyEvent.VK_D);
 
-        plusButton.setActionCommand(name + "Plus");
+        plusButton.setActionCommand(shortcutKeyStr + "Plus");
         plusButton.setToolTipText("Submit 15 minutes");
         plusButton.addActionListener(this);
         plusButton.setMnemonic(shortcutKey);
 
         rowPanel.add(plusButton);
 
-        timeRegNameMap.put(name, plusButton);
+        timeRegNameMap.put(shortcutKeyStr, plusButton);
 
         //--
 
@@ -232,7 +232,7 @@ public class Gui extends JPanel implements ActionListener {
         minusButton.setHorizontalTextPosition(AbstractButton.LEADING);
         minusButton.setMnemonic(KeyEvent.VK_D);
 
-        minusButton.setActionCommand(name + "Minus");
+        minusButton.setActionCommand(shortcutKeyStr + "Minus");
         minusButton.setToolTipText("Submit 15 minutes");
         minusButton.addActionListener(this);
 
@@ -247,8 +247,8 @@ public class Gui extends JPanel implements ActionListener {
         timeSubmittedLabel.addActionListener(this);
         rowPanel.add(timeSubmittedLabel);
 
-        timeRegSubmittedTimeMap.put(name, timeSubmittedLabel);
-        timeRegTimeMap.put(name, 0);
+        timeRegSubmittedTimeMap.put(shortcutKeyStr, timeSubmittedLabel);
+        timeRegTimeMap.put(shortcutKeyStr, 0);
 
         //--
 

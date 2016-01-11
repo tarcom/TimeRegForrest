@@ -144,7 +144,7 @@ public class Gui extends JPanel implements ActionListener {
 
         addButton("Møder: Kanban", 1604);
         addButton("Møder: Agile (retrospective + ERFA)", 1608);
-        addButton("Møder: Xportal (teammøder mandag fredag)", 870);
+        addButton("Møder: Xportal (teammøder man+fre)", 870);
         addButton("Møder: Afklaring", 870);
         addButton("");
         addButton("Egen administration", 1005);
@@ -202,7 +202,7 @@ public class Gui extends JPanel implements ActionListener {
 
         //--
 
-        JTextField descriptionTxtField = new JTextField(name, 20);
+        JTextField descriptionTxtField = new JTextField(name, 25);
         if (FROKOST_PAUSER.equalsIgnoreCase(name)) {
             FROKOST_PAUSER = shortcutKeyStr; //well not nice, but it works
             descriptionTxtField.setBackground(new Color(150, 150, 150));

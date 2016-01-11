@@ -19,17 +19,21 @@ import java.util.HashMap;
  */
 public class Gui extends JPanel implements ActionListener {
 
+    public static final String LIST_JIRAS_BUTTON_PRESSED = "listJirasButtonPressed";
     static JFrame frame;
     static HashMap<String, Integer> timeRegTimeMap = new HashMap<String, Integer>();
     static HashMap<String, JButton> timeRegNameMap = new HashMap<String, JButton>();
+    static HashMap<String, JTextField> descriptionMap = new HashMap<String, JTextField>();
     static HashMap<String, JButton> timeRegSubmittedTimeMap = new HashMap<String, JButton>();
     static HashMap<String, JTextField> jiraNumbersMap = new HashMap<String, JTextField>();
-
     static JTextField txtFieldInOffice, txtFieldOutOffice;
+
     static JLabel timeInfoLabel;
     static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox;
     static JCheckBox autoMinimizeCheckBox, autoUpdateOfficeOutCheckBox;
     static ArrayList<Integer> shortCutList = new ArrayList<Integer>();
+
+    public static String FROKOST_PAUSER = "Frokost & pauser";
 //    static HashMap<Integer, Integer> taskIds = new HashMap<Integer, Integer>();
 //    static int taskIdNext = 0;
 
@@ -138,14 +142,19 @@ public class Gui extends JPanel implements ActionListener {
 
 
 
-        addButton("Kanban / Møder Xportalen", 870);
+        addButton("Møder: Kanban", 1604);
+        addButton("Møder: Agile (retrospective + ERFA)", 1608);
+        addButton("Møder: Xportal (teammøder mandag fredag)", 870);
+        addButton("Møder: Afklaring", 870);
+        addButton("");
+        addButton("Egen administration", 1005);
         addButton("Ikke TK prioriterede opgaver", 878);
+        addButton("Other", 885);
+        addButton("");
         addButton("Daglig forvaltning", 864);
         addButton("Sagscontainer daglig forv.", 882);
         addButton("Driftstabilitet i Xportalen", 883);
         addButton("Documentation", 881);
-        addButton("Egen administration", 1005);
-        addButton("Other", 885);
 
         addButton("");
         addButton("");
@@ -158,7 +167,7 @@ public class Gui extends JPanel implements ActionListener {
         addButton("");
         addButton("");
 
-        addButton("Frokost & pauser");
+        addButton(FROKOST_PAUSER);
 
         add(new JLabel("github.com/tarcom/TimeRegForrest"));
 
@@ -194,7 +203,13 @@ public class Gui extends JPanel implements ActionListener {
         //--
 
         JTextField descriptionTxtField = new JTextField(name, 20);
+        if (FROKOST_PAUSER.equalsIgnoreCase(name)) {
+            FROKOST_PAUSER = shortcutKeyStr; //well not nice, but it works
+            descriptionTxtField.setBackground(new Color(150, 150, 150));
+        }
         rowPanel.add(descriptionTxtField);
+
+        descriptionMap.put(shortcutKeyStr, descriptionTxtField);
 
         //--
 
@@ -205,9 +220,21 @@ public class Gui extends JPanel implements ActionListener {
 
         JTextField jiraLinkField = new JTextField(jiraNumberLink, 5);
 
-        jiraNumbersMap.put("XP-" + String.valueOf(shortcutKey), jiraLinkField);
+        String key = shortcutKeyStr;
+        jiraNumbersMap.put(key, jiraLinkField);
 
         rowPanel.add(jiraLinkField);
+
+        //--
+
+        JButton listJirasButton = new JButton();
+        listJirasButton.setPreferredSize(new Dimension(7,19));
+
+        listJirasButton.setActionCommand(LIST_JIRAS_BUTTON_PRESSED + key);
+        listJirasButton.setToolTipText("Shows which static jiras issues that you can use");
+        listJirasButton.addActionListener(this);
+
+        rowPanel.add(listJirasButton);
 
         //--
 
@@ -242,7 +269,7 @@ public class Gui extends JPanel implements ActionListener {
 
         JButton timeSubmittedLabel = new JButton("           ");
         timeSubmittedLabel.setToolTipText("Click to open browser and submit time in JIRA " + jiraNumberLink);
-        timeSubmittedLabel.setActionCommand("XP-" + String.valueOf(shortcutKey));
+        timeSubmittedLabel.setActionCommand("XP-" + shortcutKeyStr);
         timeSubmittedLabel.setBorderPainted(false);
         timeSubmittedLabel.addActionListener(this);
         rowPanel.add(timeSubmittedLabel);
@@ -280,9 +307,27 @@ public class Gui extends JPanel implements ActionListener {
         } else if (e.getActionCommand().startsWith("XP-") && e.getActionCommand().length() >= 4) {
             System.out.println(e.getActionCommand());
             String shortCutKey = e.getActionCommand();
-            JTextField jTextField = jiraNumbersMap.get(shortCutKey);
+            JTextField jTextField = jiraNumbersMap.get(shortCutKey.replace("XP-", ""));
             String jiraNumber = jTextField.getText().trim();
             openUri("http://features.nykreditnet.net/browse/" + jiraNumber);
+        } else if (e.getActionCommand().startsWith(LIST_JIRAS_BUTTON_PRESSED)) {
+            Object[] possibilities = ListOfIssues.getListOfInterestingJirasStr();
+            String s = (String)JOptionPane.showInputDialog(
+                    frame,
+                    "Choose a task:",
+                    "Task popup picker",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    possibilities,
+                    possibilities[0]);
+
+            JTextField jTextFieldJira = jiraNumbersMap.get(e.getActionCommand().replace(LIST_JIRAS_BUTTON_PRESSED , ""));
+            jTextFieldJira.setText(ListOfIssues.getJiraFromStr(s));
+
+            JTextField jTextFieldDesc = descriptionMap.get(e.getActionCommand().replace(LIST_JIRAS_BUTTON_PRESSED, ""));
+            jTextFieldDesc.setText(ListOfIssues.getDescriptionFromStr(s));
+
+
         }
 
 
@@ -378,13 +423,23 @@ public class Gui extends JPanel implements ActionListener {
     private static void updateTimeInfoLabel() {
         long minutesToSubmit = getMinutesToSubmit();
         timeInfoLabel.setText("<html><font color='red'>Please submit " + convertMinutesToHouersAndMinutes(minutesToSubmit) +
-                " minuts</font> (total: " + convertMinutesToHouersAndMinutes(getTotalSubmittedMinutes()) + ")</html>");
+                " minuts</font> (total: " + convertMinutesToHouersAndMinutes(getTotalSubmittedMinutesNotPauser()) + ")</html>");
     }
 
     protected static int getTotalSubmittedMinutes() {
         int totalSubmittedMinutes = 0;
         for (Integer t : timeRegTimeMap.values()) {
             totalSubmittedMinutes += t;
+        }
+        return totalSubmittedMinutes;
+    }
+
+    protected static int getTotalSubmittedMinutesNotPauser() {
+        int totalSubmittedMinutes = 0;
+        for (String s : timeRegTimeMap.keySet()) {
+            if (!FROKOST_PAUSER.equalsIgnoreCase(s)) {
+                totalSubmittedMinutes += timeRegTimeMap.get(s);
+            }
         }
         return totalSubmittedMinutes;
     }

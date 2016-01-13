@@ -17,7 +17,9 @@ import java.util.HashMap;
 /**
  * yo
  */
-public class Gui extends JPanel implements ActionListener {
+public class Gui extends JPanel {
+
+    static ActionPerformedHandler actionPerformedHandler;
 
     public static final String LIST_JIRAS_BUTTON_PRESSED = "listJirasButtonPressed";
     static JFrame frame;
@@ -31,7 +33,6 @@ public class Gui extends JPanel implements ActionListener {
     static JLabel timeInfoLabel;
     static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox;
     static JCheckBox autoMinimizeCheckBox, autoUpdateOfficeOutCheckBox;
-    static ArrayList<Integer> shortCutList = new ArrayList<Integer>();
 
     public static String FROKOST_PAUSER = "Frokost & pauser";
 //    static HashMap<Integer, Integer> taskIds = new HashMap<Integer, Integer>();
@@ -43,6 +44,10 @@ public class Gui extends JPanel implements ActionListener {
 
     public Gui() {
         super.setLayout(new GridLayout(0, 1));
+
+        //--
+
+        this.actionPerformedHandler = new ActionPerformedHandler(this);
 
         //--
         JPanel officeInPanel = new JPanel(new GridLayout(1,2));
@@ -90,33 +95,6 @@ public class Gui extends JPanel implements ActionListener {
         add(popupIntervalPanel);
 
         //--
-
-        shortCutList.add(KeyEvent.VK_0);
-        shortCutList.add(KeyEvent.VK_1);
-        shortCutList.add(KeyEvent.VK_2);
-        shortCutList.add(KeyEvent.VK_3);
-        shortCutList.add(KeyEvent.VK_4);
-        shortCutList.add(KeyEvent.VK_5);
-        shortCutList.add(KeyEvent.VK_6);
-        shortCutList.add(KeyEvent.VK_7);
-        shortCutList.add(KeyEvent.VK_8);
-        shortCutList.add(KeyEvent.VK_9);
-        shortCutList.add(KeyEvent.VK_A);
-        shortCutList.add(KeyEvent.VK_B);
-        shortCutList.add(KeyEvent.VK_C);
-        shortCutList.add(KeyEvent.VK_D);
-        shortCutList.add(KeyEvent.VK_E);
-        shortCutList.add(KeyEvent.VK_F);
-        shortCutList.add(KeyEvent.VK_G);
-        shortCutList.add(KeyEvent.VK_H);
-        shortCutList.add(KeyEvent.VK_I);
-        shortCutList.add(KeyEvent.VK_J);
-        shortCutList.add(KeyEvent.VK_K);
-        shortCutList.add(KeyEvent.VK_L);
-        shortCutList.add(KeyEvent.VK_M);
-        shortCutList.add(KeyEvent.VK_N);
-
-        //--
         submitDurationMinutesComboBox = new JComboBox(minutValuesArr);
         submitDurationMinutesComboBox.setSelectedIndex(3);
 
@@ -128,50 +106,57 @@ public class Gui extends JPanel implements ActionListener {
         //--
 
         //--
+
+        JPanel autoMinimizeAndResetPanel = new JPanel(new GridLayout());
         autoMinimizeCheckBox = new JCheckBox("Auto minimize");
         autoMinimizeCheckBox.setSelected(true);
-        add(autoMinimizeCheckBox);
+        autoMinimizeAndResetPanel.add(autoMinimizeCheckBox);
 
+        JButton resetButton = new JButton("Reset all time");
+        resetButton.setActionCommand("RESET");
+        resetButton.addActionListener(actionPerformedHandler);
+        autoMinimizeAndResetPanel.add(resetButton);
+
+        autoMinimizeAndResetPanel.add(new JLabel(""));
+
+        add(autoMinimizeAndResetPanel);
         //--
-
 
         add(new JLabel(""));
 
         timeInfoLabel = new JLabel("Please set office int time");
         add(timeInfoLabel);
 
+        JiraGuiRow jiraGuiRow = new JiraGuiRow(this, actionPerformedHandler);
 
+        jiraGuiRow.addButton("Møder: Kanban", 1604);
+        jiraGuiRow.addButton("Møder: Agile (retrospective + ERFA)", 1608);
+        jiraGuiRow.addButton("Møder: Xportal (teammøder man+fre)", 870);
+        jiraGuiRow.addButton("Møder: Afklaring", 870);
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("Egen administration", 1005);
+        jiraGuiRow.addButton("Ikke TK prioriterede opgaver", 878);
+        jiraGuiRow.addButton("Other", 885);
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("Daglig forvaltning", 864);
+        jiraGuiRow.addButton("Sagscontainer daglig forv.", 882);
+        jiraGuiRow.addButton("Driftstabilitet i Xportalen", 883);
+        jiraGuiRow.addButton("Documentation", 881);
 
-        addButton("Møder: Kanban", 1604);
-        addButton("Møder: Agile (retrospective + ERFA)", 1608);
-        addButton("Møder: Xportal (teammøder man+fre)", 870);
-        addButton("Møder: Afklaring", 870);
-        addButton("");
-        addButton("Egen administration", 1005);
-        addButton("Ikke TK prioriterede opgaver", 878);
-        addButton("Other", 885);
-        addButton("");
-        addButton("Daglig forvaltning", 864);
-        addButton("Sagscontainer daglig forv.", 882);
-        addButton("Driftstabilitet i Xportalen", 883);
-        addButton("Documentation", 881);
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
 
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-        addButton("");
-
-        addButton(FROKOST_PAUSER);
+        jiraGuiRow.addButton(FROKOST_PAUSER);
 
         add(new JLabel("github.com/tarcom/TimeRegForrest"));
-
-
     }
 
     protected static void updateTxtFieldOutOffice() {
@@ -186,161 +171,6 @@ public class Gui extends JPanel implements ActionListener {
 
     protected static int getSubmitDurationMinutes() {
         return Integer.valueOf(((String) Gui.submitDurationMinutesComboBox.getSelectedItem()).replace(" minutes", "").trim());
-    }
-
-    void addButton(String name, int... jiraNumber) {
-
-        JPanel rowPanel = new JPanel(new GridBagLayout());
-
-        int shortcutKey = shortCutList.remove(0);
-        String shortcutKeyStr = String.valueOf(shortcutKey);
-
-        //--
-
-        //todo: I wish I coult set default size for this...
-        rowPanel.add(new JLabel(String.valueOf(" ALT+" + KeyEvent.getKeyText(shortcutKey) + " ")));
-
-        //--
-
-        JTextField descriptionTxtField = new JTextField(name, 25);
-        if (FROKOST_PAUSER.equalsIgnoreCase(name)) {
-            FROKOST_PAUSER = shortcutKeyStr; //well not nice, but it works
-            descriptionTxtField.setBackground(new Color(150, 150, 150));
-        }
-        rowPanel.add(descriptionTxtField);
-
-        descriptionMap.put(shortcutKeyStr, descriptionTxtField);
-
-        //--
-
-        String jiraNumberLink = "XP-";
-        if (jiraNumber != null && jiraNumber.length == 1) {
-            jiraNumberLink = "XP-" + jiraNumber[0];
-        }
-
-        JTextField jiraLinkField = new JTextField(jiraNumberLink, 5);
-
-        String key = shortcutKeyStr;
-        jiraNumbersMap.put(key, jiraLinkField);
-
-        rowPanel.add(jiraLinkField);
-
-        //--
-
-        JButton listJirasButton = new JButton();
-        listJirasButton.setPreferredSize(new Dimension(7,19));
-
-        listJirasButton.setActionCommand(LIST_JIRAS_BUTTON_PRESSED + key);
-        listJirasButton.setToolTipText("Shows which static jiras issues that you can use");
-        listJirasButton.addActionListener(this);
-
-        rowPanel.add(listJirasButton);
-
-        //--
-
-        JButton plusButton = new JButton("+");
-        plusButton.setVerticalTextPosition(AbstractButton.CENTER);
-        plusButton.setHorizontalTextPosition(AbstractButton.LEADING);
-        plusButton.setMnemonic(KeyEvent.VK_D);
-
-        plusButton.setActionCommand(shortcutKeyStr + "Plus");
-        plusButton.setToolTipText("Submit 15 minutes");
-        plusButton.addActionListener(this);
-        plusButton.setMnemonic(shortcutKey);
-
-        rowPanel.add(plusButton);
-
-        timeRegNameMap.put(shortcutKeyStr, plusButton);
-
-        //--
-
-        JButton minusButton = new JButton("-");
-        minusButton.setVerticalTextPosition(AbstractButton.CENTER);
-        minusButton.setHorizontalTextPosition(AbstractButton.LEADING);
-        minusButton.setMnemonic(KeyEvent.VK_D);
-
-        minusButton.setActionCommand(shortcutKeyStr + "Minus");
-        minusButton.setToolTipText("Submit 15 minutes");
-        minusButton.addActionListener(this);
-
-        rowPanel.add(minusButton);
-
-        //--
-
-        JButton timeSubmittedLabel = new JButton("           ");
-        timeSubmittedLabel.setToolTipText("Click to open browser and submit time in JIRA " + jiraNumberLink);
-        timeSubmittedLabel.setActionCommand("XP-" + shortcutKeyStr);
-        timeSubmittedLabel.setBorderPainted(false);
-        timeSubmittedLabel.addActionListener(this);
-        rowPanel.add(timeSubmittedLabel);
-
-        timeRegSubmittedTimeMap.put(shortcutKeyStr, timeSubmittedLabel);
-        timeRegTimeMap.put(shortcutKeyStr, 0);
-
-        //--
-
-        add(rowPanel);
-
-    }
-
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getActionCommand().endsWith("Plus")) {
-            String plusName = e.getActionCommand().replace("Plus", "");
-
-            timeRegTimeMap.put(plusName, timeRegTimeMap.get(plusName) + getSubmitDurationMinutes());
-            String time = convertMinutesToHouersAndMinutes(timeRegTimeMap.get(plusName));
-            String submitTimeTxt = "<html><FONT color=\"#000099\"><U>" + time + "</U></FONT></HTML>";
-
-
-            timeRegSubmittedTimeMap.get(plusName).setText(submitTimeTxt);
-
-            if (autoMinimizeCheckBox.isSelected() && getMinutesToSubmit() < getSubmitDurationMinutes()) {
-                frame.setState(Frame.ICONIFIED);
-            }
-
-        } else if (e.getActionCommand().endsWith("Minus")) {
-            String minusName = e.getActionCommand().replace("Minus", "");
-
-            timeRegTimeMap.put(minusName, timeRegTimeMap.get(minusName) - getSubmitDurationMinutes());
-            timeRegSubmittedTimeMap.get(minusName).setText(convertMinutesToHouersAndMinutes(timeRegTimeMap.get(minusName)));
-        } else if (e.getActionCommand().startsWith("XP-") && e.getActionCommand().length() >= 4) {
-            System.out.println(e.getActionCommand());
-            String shortCutKey = e.getActionCommand();
-            JTextField jTextField = jiraNumbersMap.get(shortCutKey.replace("XP-", ""));
-            String jiraNumber = jTextField.getText().trim();
-            openUri("http://features.nykreditnet.net/browse/" + jiraNumber);
-        } else if (e.getActionCommand().startsWith(LIST_JIRAS_BUTTON_PRESSED)) {
-            Object[] possibilities = ListOfIssues.getListOfInterestingJirasStr();
-            String s = (String)JOptionPane.showInputDialog(
-                    frame,
-                    "Choose a task:",
-                    "Task popup picker",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    possibilities,
-                    possibilities[0]);
-
-            JTextField jTextFieldJira = jiraNumbersMap.get(e.getActionCommand().replace(LIST_JIRAS_BUTTON_PRESSED , ""));
-            jTextFieldJira.setText(ListOfIssues.getJiraFromStr(s));
-
-            JTextField jTextFieldDesc = descriptionMap.get(e.getActionCommand().replace(LIST_JIRAS_BUTTON_PRESSED, ""));
-            jTextFieldDesc.setText(ListOfIssues.getDescriptionFromStr(s));
-
-
-        }
-
-
-
-        handleSetTIme();
-    }
-
-    private static void openUri(String uri) {
-        if (Desktop.isDesktopSupported()) {
-            try {
-                Desktop.getDesktop().browse(new URI(uri));
-            } catch (Exception e) { /* TODO: error handling */ }
-        } else { /* TODO: error handling */ }
     }
 
     protected static String convertMinutesToHouersAndMinutes(long minutes) {

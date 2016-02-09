@@ -67,7 +67,7 @@ public class JiraGuiRow {
         }
         rowPanel.add(descriptionTxtField);
 
-        gui.descriptionMap.put(shortcutKeyStr, descriptionTxtField);
+        Gui.persistanceDataWrapper.getDescriptionMap().put(shortcutKeyStr, descriptionTxtField);
 
         //--
 
@@ -79,7 +79,7 @@ public class JiraGuiRow {
         JTextField jiraLinkField = new JTextField(jiraNumberLink, 5);
 
         String key = shortcutKeyStr;
-        gui.jiraNumbersMap.put(key, jiraLinkField);
+        Gui.persistanceDataWrapper.getJiraNumbersMap().put(key, jiraLinkField);
 
         rowPanel.add(jiraLinkField);
 
@@ -108,7 +108,7 @@ public class JiraGuiRow {
 
         rowPanel.add(plusButton);
 
-        gui.timeRegNameMap.put(shortcutKeyStr, plusButton);
+        Gui.persistanceDataWrapper.getTimeRegNameMap().put(shortcutKeyStr, plusButton);
 
         //--
 
@@ -132,8 +132,8 @@ public class JiraGuiRow {
         timeSubmittedLabel.addActionListener(actionPerformedHandler);
         rowPanel.add(timeSubmittedLabel);
 
-        gui.timeRegSubmittedTimeMap.put(shortcutKeyStr, timeSubmittedLabel);
-        gui.timeRegTimeMap.put(shortcutKeyStr, 0);
+        Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().put(shortcutKeyStr, timeSubmittedLabel);
+        Gui.persistanceDataWrapper.getTimeRegTimeMap().put(shortcutKeyStr, 0);
 
         //--
 

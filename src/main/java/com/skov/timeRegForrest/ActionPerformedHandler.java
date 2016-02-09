@@ -20,65 +20,112 @@ public class ActionPerformedHandler  implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().endsWith("Plus")) {
-            String plusName = e.getActionCommand().replace("Plus", "");
-
-            gui.timeRegTimeMap.put(plusName, gui.timeRegTimeMap.get(plusName) + gui.getSubmitDurationMinutes());
-            String time = gui.convertMinutesToHouersAndMinutes(gui.timeRegTimeMap.get(plusName));
-            String submitTimeTxt = "<html><FONT color=\"#000099\"><U>" + time + "</U></FONT></HTML>";
-
-
-            gui.timeRegSubmittedTimeMap.get(plusName).setText(submitTimeTxt);
-
-            if (gui.autoMinimizeCheckBox.isSelected() && gui.getMinutesToSubmit() < gui.getSubmitDurationMinutes()) {
-                gui.frame.setState(Frame.ICONIFIED);
-            }
-
+            handlePlus(e);
+            PersisterService.doPersist(gui);
         } else if (e.getActionCommand().endsWith("Minus")) {
-            String minusName = e.getActionCommand().replace("Minus", "");
-
-            gui.timeRegTimeMap.put(minusName, gui.timeRegTimeMap.get(minusName) - gui.getSubmitDurationMinutes());
-            gui.timeRegSubmittedTimeMap.get(minusName).setText(gui.convertMinutesToHouersAndMinutes(gui.timeRegTimeMap.get(minusName)));
+            handleMinus(e);
+            PersisterService.doPersist(gui);
         } else if (e.getActionCommand().startsWith("XP-") && e.getActionCommand().length() >= 4) {
-            System.out.println(e.getActionCommand());
-            String shortCutKey = e.getActionCommand();
-            JTextField jTextField = gui.jiraNumbersMap.get(shortCutKey.replace("XP-", ""));
-            String jiraNumber = jTextField.getText().trim();
-            openUri("http://features.nykreditnet.net/browse/" + jiraNumber);
+            handleOpenJira(e);
         } else if (e.getActionCommand().startsWith(gui.LIST_JIRAS_BUTTON_PRESSED)) {
-            Object[] possibilities = ListOfIssues.getListOfInterestingJirasStr();
-            String s = (String)JOptionPane.showInputDialog(
-                    gui.frame,
-                    "Choose a task:",
-                    "Task popup picker",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    possibilities,
-                    possibilities[0]);
-
-            JTextField jTextFieldJira = gui.jiraNumbersMap.get(e.getActionCommand().replace(gui.LIST_JIRAS_BUTTON_PRESSED , ""));
-            jTextFieldJira.setText(ListOfIssues.getJiraFromStr(s));
-
-            JTextField jTextFieldDesc = gui.descriptionMap.get(e.getActionCommand().replace(gui.LIST_JIRAS_BUTTON_PRESSED, ""));
-            jTextFieldDesc.setText(ListOfIssues.getDescriptionFromStr(s));
-
+            handleShowJiraListPopup(e);
         } else if (e.getActionCommand().equals("RESET")) {
-            gui.timeRegSubmittedTimeMap.get(1);
-            gui.timeRegTimeMap.get(1);
-
-            for (String s : gui.timeRegTimeMap.keySet()) {
-                gui.timeRegTimeMap.put(s, 0);
-            }
-
-            for (String s : gui.timeRegSubmittedTimeMap.keySet()) {
-                JButton jButton = gui.timeRegSubmittedTimeMap.get(s);
-                jButton.setText("           ");
-                gui.timeRegSubmittedTimeMap.put(s, jButton);
-            }
-
-
+            handleResetPressed();
+        } else if (e.getActionCommand().equals(Gui.LOAD_FILE)) {
+            handleLoadFile();
         }
 
         gui.handleSetTIme();
+    }
+
+    public static void handleLoadFile() {
+        PersistanceDataWrapper persistanceDataWrapperCOPY = PersisterService.doLoad(gui);
+
+        for (String key : persistanceDataWrapperCOPY.getTimeRegTimeMap().keySet()) {
+            Gui.persistanceDataWrapper.getTimeRegTimeMap().put(key, persistanceDataWrapperCOPY.getTimeRegTimeMap().get(key));
+        }
+
+        for (String key : persistanceDataWrapperCOPY.getTimeRegSubmittedTimeMap().keySet()) {
+            Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(key).setText(persistanceDataWrapperCOPY.getTimeRegSubmittedTimeMap().get(key).getText());
+        }
+
+
+        for (String key : persistanceDataWrapperCOPY.getTimeRegNameMap().keySet()) {
+            Gui.persistanceDataWrapper.getTimeRegNameMap().put(key, persistanceDataWrapperCOPY.getTimeRegNameMap().get(key));
+        }
+
+
+        for (String key : persistanceDataWrapperCOPY.getJiraNumbersMap().keySet()) {
+            Gui.persistanceDataWrapper.getJiraNumbersMap().get(key).setText(persistanceDataWrapperCOPY.getJiraNumbersMap().get(key).getText());
+        }
+
+
+        for (String key : persistanceDataWrapperCOPY.getDescriptionMap().keySet()) {
+            Gui.persistanceDataWrapper.getDescriptionMap().get(key).setText(persistanceDataWrapperCOPY.getDescriptionMap().get(key).getText());
+        }
+    }
+
+    private void handleResetPressed() {
+        Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(1);
+        Gui.persistanceDataWrapper.getTimeRegTimeMap().get(1);
+
+        for (String s : Gui.persistanceDataWrapper.getTimeRegTimeMap().keySet()) {
+            Gui.persistanceDataWrapper.getTimeRegTimeMap().put(s, 0);
+        }
+
+        for (String s : Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().keySet()) {
+            JButton jButton = Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(s);
+            jButton.setText("           ");
+            Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().put(s, jButton);
+        }
+    }
+
+    private void handleShowJiraListPopup(ActionEvent e) {
+        Object[] possibilities = ListOfIssues.getListOfInterestingJirasStr();
+        String s = (String) JOptionPane.showInputDialog(
+                gui.frame,
+                "Choose a task:",
+                "Task popup picker",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                possibilities,
+                possibilities[0]);
+
+        JTextField jTextFieldJira = Gui.persistanceDataWrapper.getJiraNumbersMap().get(e.getActionCommand().replace(gui.LIST_JIRAS_BUTTON_PRESSED, ""));
+        jTextFieldJira.setText(ListOfIssues.getJiraFromStr(s));
+
+        JTextField jTextFieldDesc = Gui.persistanceDataWrapper.getDescriptionMap().get(e.getActionCommand().replace(gui.LIST_JIRAS_BUTTON_PRESSED, ""));
+        jTextFieldDesc.setText(ListOfIssues.getDescriptionFromStr(s));
+    }
+
+    private void handleOpenJira(ActionEvent e) {
+        System.out.println(e.getActionCommand());
+        String shortCutKey = e.getActionCommand();
+        JTextField jTextField = Gui.persistanceDataWrapper.getJiraNumbersMap().get(shortCutKey.replace("XP-", ""));
+        String jiraNumber = jTextField.getText().trim();
+        openUri("http://features.nykreditnet.net/browse/" + jiraNumber);
+    }
+
+    private void handleMinus(ActionEvent e) {
+        String minusName = e.getActionCommand().replace("Minus", "");
+
+        Gui.persistanceDataWrapper.getTimeRegTimeMap().put(minusName, Gui.persistanceDataWrapper.getTimeRegTimeMap().get(minusName) - gui.getSubmitDurationMinutes());
+        Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(minusName).setText(gui.convertMinutesToHouersAndMinutes(Gui.persistanceDataWrapper.getTimeRegTimeMap().get(minusName)));
+    }
+
+    private void handlePlus(ActionEvent e) {
+        String plusName = e.getActionCommand().replace("Plus", "");
+
+        Gui.persistanceDataWrapper.getTimeRegTimeMap().put(plusName, Gui.persistanceDataWrapper.getTimeRegTimeMap().get(plusName) + gui.getSubmitDurationMinutes());
+        String time = gui.convertMinutesToHouersAndMinutes(Gui.persistanceDataWrapper.getTimeRegTimeMap().get(plusName));
+        String submitTimeTxt = "<html><FONT color=\"#000099\"><U>" + time + "</U></FONT></HTML>";
+
+
+        Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(plusName).setText(submitTimeTxt);
+
+        if (gui.autoMinimizeCheckBox.isSelected() && gui.getMinutesToSubmit() < gui.getSubmitDurationMinutes()) {
+            gui.frame.setState(Frame.ICONIFIED);
+        }
     }
 
     private static void openUri(String uri) {

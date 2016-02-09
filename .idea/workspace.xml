@@ -6,14 +6,17 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" line="323" mnemonic="2" />
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" line="211" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ActionPerformedHandler.java" line="40" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/JiraGuiRow.java" line="78" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d55a8f2-0576-479e-91d2-fa06f64c709e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ListOfIssues.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/PersistanceDataWrapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/PersisterService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/TimeRegForrest/TimeRegForrest.jar" afterPath="$PROJECT_DIR$/out/artifacts/TimeRegForrest/TimeRegForrest.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ActionPerformedHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ActionPerformedHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" afterPath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/JiraGuiRow.java" afterPath="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/JiraGuiRow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TimeReg.iws" />
@@ -44,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -53,15 +56,63 @@
       <file leaf-file-name="Gui.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36417034">
-              <caret line="316" column="37" selection-start-line="316" selection-start-column="37" selection-end-line="316" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.63265306">
+              <caret line="185" column="9" selection-start-line="185" selection-start-column="9" selection-end-line="185" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersistanceDataWrapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/PersistanceDataWrapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
               <folding>
-                <element signature="e#622#639#0" expanded="true" />
-                <element signature="e#707#724#0" expanded="true" />
-                <element signature="e#795#815#0" expanded="true" />
-                <element signature="e#892#909#0" expanded="true" />
-                <element signature="e#980#1000#0" expanded="true" />
-                <element signature="e#1302#1311#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#648#665#0" expanded="true" />
+                <element signature="e#1016#1017#0" expanded="true" />
+                <element signature="e#1062#1063#0" expanded="true" />
+                <element signature="e#1519#1520#0" expanded="true" />
+                <element signature="e#1556#1557#0" expanded="true" />
+                <element signature="e#1745#1746#0" expanded="true" />
+                <element signature="e#1782#1783#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersisterService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/PersisterService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionPerformedHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ActionPerformedHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JiraGuiRow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/JiraGuiRow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="78" column="64" selection-start-line="78" selection-start-column="64" selection-end-line="78" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,63 +123,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="51" column="61" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#312#320#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JTextField.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/javax/swing/JTextField.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="210" column="11" selection-start-line="210" selection-start-column="11" selection-end-line="210" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#33804#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#6117#6118#0" expanded="false" />
-                <element signature="e#6152#6153#0" expanded="false" />
-                <element signature="e#6436#6437#0" expanded="false" />
-                <element signature="e#6471#6472#0" expanded="false" />
-                <element signature="e#6952#6953#0" expanded="false" />
-                <element signature="e#6993#6994#0" expanded="false" />
-                <element signature="e#7494#7495#0" expanded="false" />
-                <element signature="e#7535#7536#0" expanded="false" />
-                <element signature="e#9111#9112#0" expanded="false" />
-                <element signature="e#9143#9144#0" expanded="false" />
-                <element signature="e#10390#10391#0" expanded="false" />
-                <element signature="e#10476#10477#0" expanded="false" />
-                <element signature="e#10894#10895#0" expanded="false" />
-                <element signature="e#10936#10937#0" expanded="false" />
-                <element signature="e#12826#12827#0" expanded="false" />
-                <element signature="e#12868#12869#0" expanded="false" />
-                <element signature="e#13036#13037#0" expanded="false" />
-                <element signature="e#13066#13067#0" expanded="false" />
-                <element signature="e#15536#15537#0" expanded="false" />
-                <element signature="e#15593#15594#0" expanded="false" />
-                <element signature="e#17931#17932#0" expanded="false" />
-                <element signature="e#17969#17970#0" expanded="false" />
-                <element signature="e#21676#21677#0" expanded="false" />
-                <element signature="e#21705#21706#0" expanded="false" />
-                <element signature="e#24784#24785#0" expanded="false" />
-                <element signature="e#24820#24821#0" expanded="false" />
-                <element signature="e#25630#25631#0" expanded="false" />
-                <element signature="e#25711#25712#0" expanded="false" />
-                <element signature="e#25988#25989#0" expanded="false" />
-                <element signature="e#26025#26026#0" expanded="false" />
-                <element signature="e#26631#26632#0" expanded="false" />
-                <element signature="e#26664#26665#0" expanded="false" />
-                <element signature="e#26799#26800#0" expanded="false" />
-                <element signature="e#26843#26844#0" expanded="false" />
-                <element signature="e#27007#27008#0" expanded="false" />
-                <element signature="e#27056#27057#0" expanded="false" />
-                <element signature="e#29144#29145#0" expanded="false" />
-                <element signature="e#29187#29188#0" expanded="false" />
-                <element signature="e#29855#29856#0" expanded="false" />
-                <element signature="e#29888#29889#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,6 +136,7 @@
               <folding>
                 <element signature="e#0#193958#0" expanded="false" />
                 <element signature="imports" expanded="false" />
+                <element signature="e#2557#2568#0" expanded="false" />
                 <element signature="e#9052#9053#0" expanded="false" />
                 <element signature="e#9114#9115#0" expanded="false" />
                 <element signature="e#9887#9888#0" expanded="false" />
@@ -200,35 +196,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KeyEvent.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/event/KeyEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="267" column="28" selection-start-line="267" selection-start-column="28" selection-end-line="267" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#65199#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#31198#31199#0" expanded="false" />
-                <element signature="e#31258#31259#0" expanded="false" />
-                <element signature="e#31763#31764#0" expanded="false" />
-                <element signature="e#31827#31828#0" expanded="false" />
-                <element signature="e#39153#39154#0" expanded="false" />
-                <element signature="e#39183#39184#0" expanded="false" />
-                <element signature="e#39387#39388#0" expanded="false" />
-                <element signature="e#39425#39426#0" expanded="false" />
-                <element signature="e#40115#40116#0" expanded="false" />
-                <element signature="e#40145#40146#0" expanded="false" />
-                <element signature="e#40400#40401#0" expanded="false" />
-                <element signature="e#40438#40439#0" expanded="false" />
-                <element signature="e#41838#41839#0" expanded="false" />
-                <element signature="e#41872#41873#0" expanded="false" />
-                <element signature="e#62673#62674#0" expanded="false" />
-                <element signature="e#62716#62717#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="todo.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/todo.txt">
           <provider selected="true" editor-type-id="text-editor">
@@ -245,20 +212,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IdioticDesktShortcutsRemover.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/IdioticDesktShortcutsRemover.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#242#243#0" expanded="false" />
-                <element signature="e#268#269#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -298,6 +251,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/IssueWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/JiraWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ListOfIssues.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/PersistanceDataWrapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/JiraGuiRow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/PersisterService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ActionPerformedHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java" />
       </list>
     </option>
@@ -322,10 +279,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1676" />
+    <option name="x" value="-4" />
     <option name="y" value="-4" />
     <option name="width" value="1688" />
-    <option name="height" value="1058" />
+    <option name="height" value="1014" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -350,9 +307,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -449,6 +403,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -467,6 +424,11 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="com.skov.timeRegForrest.PersistanceDataWrapper" />
+    </key>
   </component>
   <component name="Regex">
     <option name="pos1" value="218" />
@@ -853,7 +815,11 @@
       <workItem from="1448789397718" duration="6273000" />
       <workItem from="1450426350457" duration="560000" />
       <workItem from="1452074018038" duration="4438000" />
-      <workItem from="1452501863088" duration="5056000" />
+      <workItem from="1452501863088" duration="9115000" />
+      <workItem from="1453469176328" duration="379000" />
+      <workItem from="1453469635509" duration="9729000" />
+      <workItem from="1453967485580" duration="6733000" />
+      <workItem from="1455002522308" duration="754000" />
     </task>
     <task id="LOCAL-00001" summary="xxx">
       <created>1447884842366</created>
@@ -885,25 +851,49 @@
       <option name="project" value="LOCAL" />
       <updated>1450426895939</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="popup static issues chooser for new tasks">
+      <created>1452506945513</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1452506945513</updated>
+    </task>
+    <task id="LOCAL-00007" summary="sizeUp on desc.">
+      <created>1452507074069</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1452507074069</updated>
+    </task>
+    <task id="LOCAL-00008" summary="sizeUp on desc.">
+      <created>1452507120679</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1452507120679</updated>
+    </task>
+    <task id="LOCAL-00009" summary="reset time button added">
+      <created>1452671461855</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1452671461855</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56787000" />
+    <option name="totallyTimeSpent" value="78441000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1676" y="-4" width="1688" height="1058" extended-state="6" />
+    <frame x="-4" y="-4" width="1688" height="1014" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3163539" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3158482" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24787234" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.30212766" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26004463" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30245537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -914,13 +904,13 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28085107" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28013393" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -941,19 +931,22 @@
     <MESSAGE value="some new features, etc. the +/- stuff" />
     <MESSAGE value="some new features" />
     <MESSAGE value="new static issues ++" />
-    <option name="LAST_COMMIT_MESSAGE" value="new static issues ++" />
+    <MESSAGE value="popup static issues chooser for new tasks" />
+    <MESSAGE value="sizeUp on desc." />
+    <MESSAGE value="reset time button added" />
+    <option name="LAST_COMMIT_MESSAGE" value="reset time button added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java</url>
-          <line>310</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ActionPerformedHandler.java</url>
+          <line>41</line>
           <properties />
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -962,68 +955,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/IdioticDesktShortcutsRemover.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#242#243#0" expanded="false" />
-            <element signature="e#268#269#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-          <folding>
-            <element signature="e#622#639#0" expanded="true" />
-            <element signature="e#707#724#0" expanded="true" />
-            <element signature="e#795#815#0" expanded="true" />
-            <element signature="e#892#909#0" expanded="true" />
-            <element signature="e#980#1000#0" expanded="true" />
-            <element signature="e#1302#1311#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/event/KeyEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="283" column="28" selection-start-line="283" selection-start-column="28" selection-end-line="283" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#65199#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#31198#31199#0" expanded="false" />
-            <element signature="e#31258#31259#0" expanded="false" />
-            <element signature="e#31763#31764#0" expanded="false" />
-            <element signature="e#31827#31828#0" expanded="false" />
-            <element signature="e#39153#39154#0" expanded="false" />
-            <element signature="e#39183#39184#0" expanded="false" />
-            <element signature="e#39387#39388#0" expanded="false" />
-            <element signature="e#39425#39426#0" expanded="false" />
-            <element signature="e#40115#40116#0" expanded="false" />
-            <element signature="e#40145#40146#0" expanded="false" />
-            <element signature="e#40400#40401#0" expanded="false" />
-            <element signature="e#40438#40439#0" expanded="false" />
-            <element signature="e#41838#41839#0" expanded="false" />
-            <element signature="e#41872#41873#0" expanded="false" />
-            <element signature="e#62673#62674#0" expanded="false" />
-            <element signature="e#62716#62717#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/javax/swing/JComboBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="193" column="11" selection-start-line="193" selection-start-column="11" selection-end-line="193" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$TOOLS_HOME$/oracle/jdk/1.8.0_51/src.zip!/java/awt/GridBagConstraints.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1065,14 +996,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#622#639#0" expanded="true" />
-            <element signature="e#707#724#0" expanded="true" />
-            <element signature="e#795#815#0" expanded="true" />
-            <element signature="e#892#909#0" expanded="true" />
-            <element signature="e#980#1000#0" expanded="true" />
-            <element signature="e#1302#1311#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1117,14 +1041,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#622#639#0" expanded="true" />
-            <element signature="e#707#724#0" expanded="true" />
-            <element signature="e#795#815#0" expanded="true" />
-            <element signature="e#892#909#0" expanded="true" />
-            <element signature="e#980#1000#0" expanded="true" />
-            <element signature="e#1302#1311#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1169,14 +1086,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="192" column="23" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
-          <folding>
-            <element signature="e#622#639#0" expanded="true" />
-            <element signature="e#707#724#0" expanded="true" />
-            <element signature="e#795#815#0" expanded="true" />
-            <element signature="e#892#909#0" expanded="true" />
-            <element signature="e#980#1000#0" expanded="true" />
-            <element signature="e#1302#1311#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1319,7 +1229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="193" column="11" selection-start-line="193" selection-start-column="11" selection-end-line="193" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1334,11 +1243,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#242#243#0" expanded="false" />
-            <element signature="e#268#269#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1346,50 +1250,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="210" column="11" selection-start-line="210" selection-start-column="11" selection-end-line="210" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#33804#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6117#6118#0" expanded="false" />
-            <element signature="e#6152#6153#0" expanded="false" />
-            <element signature="e#6436#6437#0" expanded="false" />
-            <element signature="e#6471#6472#0" expanded="false" />
-            <element signature="e#6952#6953#0" expanded="false" />
-            <element signature="e#6993#6994#0" expanded="false" />
-            <element signature="e#7494#7495#0" expanded="false" />
-            <element signature="e#7535#7536#0" expanded="false" />
-            <element signature="e#9111#9112#0" expanded="false" />
-            <element signature="e#9143#9144#0" expanded="false" />
-            <element signature="e#10390#10391#0" expanded="false" />
-            <element signature="e#10476#10477#0" expanded="false" />
-            <element signature="e#10894#10895#0" expanded="false" />
-            <element signature="e#10936#10937#0" expanded="false" />
-            <element signature="e#12826#12827#0" expanded="false" />
-            <element signature="e#12868#12869#0" expanded="false" />
-            <element signature="e#13036#13037#0" expanded="false" />
-            <element signature="e#13066#13067#0" expanded="false" />
-            <element signature="e#15536#15537#0" expanded="false" />
-            <element signature="e#15593#15594#0" expanded="false" />
-            <element signature="e#17931#17932#0" expanded="false" />
-            <element signature="e#17969#17970#0" expanded="false" />
-            <element signature="e#21676#21677#0" expanded="false" />
-            <element signature="e#21705#21706#0" expanded="false" />
-            <element signature="e#24784#24785#0" expanded="false" />
-            <element signature="e#24820#24821#0" expanded="false" />
-            <element signature="e#25630#25631#0" expanded="false" />
-            <element signature="e#25711#25712#0" expanded="false" />
-            <element signature="e#25988#25989#0" expanded="false" />
-            <element signature="e#26025#26026#0" expanded="false" />
-            <element signature="e#26631#26632#0" expanded="false" />
-            <element signature="e#26664#26665#0" expanded="false" />
-            <element signature="e#26799#26800#0" expanded="false" />
-            <element signature="e#26843#26844#0" expanded="false" />
-            <element signature="e#27007#27008#0" expanded="false" />
-            <element signature="e#27056#27057#0" expanded="false" />
-            <element signature="e#29144#29145#0" expanded="false" />
-            <element signature="e#29187#29188#0" expanded="false" />
-            <element signature="e#29855#29856#0" expanded="false" />
-            <element signature="e#29888#29889#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1420,14 +1281,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1451,6 +1304,7 @@
           <folding>
             <element signature="e#0#193958#0" expanded="false" />
             <element signature="imports" expanded="false" />
+            <element signature="e#2557#2568#0" expanded="false" />
             <element signature="e#9052#9053#0" expanded="false" />
             <element signature="e#9114#9115#0" expanded="false" />
             <element signature="e#9887#9888#0" expanded="false" />
@@ -1513,25 +1367,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="61" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/PersistanceDataWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#312#320#0" expanded="true" />
+            <element signature="e#648#665#0" expanded="true" />
+            <element signature="e#1016#1017#0" expanded="true" />
+            <element signature="e#1062#1063#0" expanded="true" />
+            <element signature="e#1519#1520#0" expanded="true" />
+            <element signature="e#1556#1557#0" expanded="true" />
+            <element signature="e#1745#1746#0" expanded="true" />
+            <element signature="e#1782#1783#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/JiraGuiRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="78" column="64" selection-start-line="78" selection-start-column="64" selection-end-line="78" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/MAIN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/PersisterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/ActionPerformedHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/skov/timeRegForrest/Gui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36417034">
-          <caret line="316" column="37" selection-start-line="316" selection-start-column="37" selection-end-line="316" selection-end-column="37" />
-          <folding>
-            <element signature="e#622#639#0" expanded="true" />
-            <element signature="e#707#724#0" expanded="true" />
-            <element signature="e#795#815#0" expanded="true" />
-            <element signature="e#892#909#0" expanded="true" />
-            <element signature="e#980#1000#0" expanded="true" />
-            <element signature="e#1302#1311#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.63265306">
+          <caret line="185" column="9" selection-start-line="185" selection-start-column="9" selection-end-line="185" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

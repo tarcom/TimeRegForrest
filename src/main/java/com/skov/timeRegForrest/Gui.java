@@ -5,14 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.IOException;
-import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 /**
  * yo
@@ -22,27 +18,28 @@ public class Gui extends JPanel {
     static ActionPerformedHandler actionPerformedHandler;
 
     public static final String LIST_JIRAS_BUTTON_PRESSED = "listJirasButtonPressed";
+    public static final String LOAD_FILE = "Load file";
     static JFrame frame;
-    static HashMap<String, Integer> timeRegTimeMap = new HashMap<String, Integer>();
-    static HashMap<String, JButton> timeRegNameMap = new HashMap<String, JButton>();
-    static HashMap<String, JTextField> descriptionMap = new HashMap<String, JTextField>();
-    static HashMap<String, JButton> timeRegSubmittedTimeMap = new HashMap<String, JButton>();
-    static HashMap<String, JTextField> jiraNumbersMap = new HashMap<String, JTextField>();
     static JTextField txtFieldInOffice, txtFieldOutOffice;
 
     static JLabel timeInfoLabel;
-    static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox;
+    static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox, chooseSavedDataComboBox;
     static JCheckBox autoMinimizeCheckBox, autoUpdateOfficeOutCheckBox;
 
     public static String FROKOST_PAUSER = "Frokost & pauser";
 //    static HashMap<Integer, Integer> taskIds = new HashMap<Integer, Integer>();
 //    static int taskIdNext = 0;
 
+    public static PersistanceDataWrapper persistanceDataWrapper;
+
 
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 
     public Gui() {
+
+        persistanceDataWrapper = new PersistanceDataWrapper();
+
         super.setLayout(new GridLayout(0, 1));
 
         //--
@@ -105,6 +102,30 @@ public class Gui extends JPanel {
         add(submitDurationPanel);
         //--
 
+
+        //--
+        String[] savedFiles = PersisterService.getAvaiableFilesStrArr();
+        chooseSavedDataComboBox = new JComboBox(savedFiles);
+        chooseSavedDataComboBox.setSelectedIndex(PersisterService.getAvaiableFiles().size()-1);
+        chooseSavedDataComboBox.setActionCommand(LOAD_FILE);
+        chooseSavedDataComboBox.addActionListener(actionPerformedHandler);
+
+        JPanel chooseSavedDataPanel = new JPanel(new GridLayout());
+        chooseSavedDataPanel.add(new JLabel("Saved datafile: (" + savedFiles.length + " avail.)"));
+        chooseSavedDataPanel.add(chooseSavedDataComboBox);
+
+        chooseSavedDataPanel.add(new JLabel(""));
+//        JButton savedFileButton = new JButton(LOAD_FILE);
+//        savedFileButton.setActionCommand(LOAD_FILE);
+//        savedFileButton.addActionListener(actionPerformedHandler);
+//        chooseSavedDataPanel.add(savedFileButton);
+
+
+        add(chooseSavedDataPanel);
+
+        //--
+
+
         //--
 
         JPanel autoMinimizeAndResetPanel = new JPanel(new GridLayout());
@@ -157,6 +178,12 @@ public class Gui extends JPanel {
         jiraGuiRow.addButton(FROKOST_PAUSER);
 
         add(new JLabel("github.com/tarcom/TimeRegForrest"));
+
+        try {
+            ActionPerformedHandler.handleLoadFile();
+        } catch (NullPointerException npe) {
+            PersisterService.doPersist(this); //initial persist, so that we can load though empty values later
+        }
     }
 
     protected static void updateTxtFieldOutOffice() {
@@ -258,7 +285,7 @@ public class Gui extends JPanel {
 
     protected static int getTotalSubmittedMinutes() {
         int totalSubmittedMinutes = 0;
-        for (Integer t : timeRegTimeMap.values()) {
+        for (Integer t : persistanceDataWrapper.getTimeRegTimeMap().values()) {
             totalSubmittedMinutes += t;
         }
         return totalSubmittedMinutes;
@@ -266,9 +293,9 @@ public class Gui extends JPanel {
 
     protected static int getTotalSubmittedMinutesNotPauser() {
         int totalSubmittedMinutes = 0;
-        for (String s : timeRegTimeMap.keySet()) {
+        for (String s : persistanceDataWrapper.getTimeRegTimeMap().keySet()) {
             if (!FROKOST_PAUSER.equalsIgnoreCase(s)) {
-                totalSubmittedMinutes += timeRegTimeMap.get(s);
+                totalSubmittedMinutes += persistanceDataWrapper.getTimeRegTimeMap().get(s);
             }
         }
         return totalSubmittedMinutes;
@@ -292,7 +319,7 @@ public class Gui extends JPanel {
 
     static long getAllreadySubmittetMinutes() {
         long duration = 0l;
-        for (int time : timeRegTimeMap.values()) {
+        for (int time : persistanceDataWrapper.getTimeRegTimeMap().values()) {
             duration += time;
         }
 

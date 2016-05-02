@@ -230,7 +230,7 @@ public class Gui extends JPanel {
         jiraGuiRow.addButton("Documentation", 881);
 
         jiraGuiRow.addButton("Polen mentoring", 1813);
-        jiraGuiRow.addButton("Auto-test", 1881);
+        jiraGuiRow.addButton("Auto-test", 1883);
         jiraGuiRow.addButton("TK erhverv samarbejde", 1343);
         jiraGuiRow.addButton("Ny gar model samarbejde", 1345);
         jiraGuiRow.addButton("Hjælp til projekter", 872);

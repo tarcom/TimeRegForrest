@@ -78,6 +78,7 @@ public class ActionPerformedHandler  implements ActionListener {
             jButton.setText("           ");
             Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().put(s, jButton);
         }
+        System.out.println("reset pressed!!");
     }
 
     private void handleShowJiraListPopup(ActionEvent e) {

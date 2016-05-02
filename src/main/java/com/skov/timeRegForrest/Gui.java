@@ -28,10 +28,6 @@ public class Gui extends JPanel {
     static JComboBox popupIntervalMorningComboBox, popupIntervalLunchComboBox, popupIntervalAfternoonComboBox;
     static JCheckBox autoMinimizeCheckBox, autoUpdateOfficeOutCheckBox;
 
-    //public static String FROKOST_PAUSER = "Frokost & pauser";
-//    static HashMap<Integer, Integer> taskIds = new HashMap<Integer, Integer>();
-//    static int taskIdNext = 0;
-
     public static PersistanceDataWrapper persistanceDataWrapper;
 
 

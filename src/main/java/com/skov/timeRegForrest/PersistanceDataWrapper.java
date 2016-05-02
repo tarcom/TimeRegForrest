@@ -16,15 +16,16 @@ public class PersistanceDataWrapper implements Serializable {
     private HashMap<String, JButton> timeRegNameMap = new HashMap<String, JButton>();
     private HashMap<String, Integer> timeRegTimeMap = new HashMap<String, Integer>();
 
+    private String officeIn, officeOut;
+
+    private int breakMorning, breakLunch, breakAfternoon;
+
     public PersistanceDataWrapper() {
     }
 
     public HashMap<String, JTextField> getJiraNumbersMap() {
         return jiraNumbersMap;
     }
-
-
-
 
 
     public void setJiraNumbersMap(HashMap<String, JTextField> jiraNumbersMap) {
@@ -61,5 +62,45 @@ public class PersistanceDataWrapper implements Serializable {
 
     public void setTimeRegTimeMap(HashMap<String, Integer> timeRegTimeMap) {
         this.timeRegTimeMap = timeRegTimeMap;
+    }
+
+    public String getOfficeIn() {
+        return officeIn;
+    }
+
+    public void setOfficeIn(String officeIn) {
+        this.officeIn = officeIn;
+    }
+
+    public String getOfficeOut() {
+        return officeOut;
+    }
+
+    public void setOfficeOut(String officeOut) {
+        this.officeOut = officeOut;
+    }
+
+    public int getBreakMorning() {
+        return breakMorning;
+    }
+
+    public void setBreakMorning(int breakMorning) {
+        this.breakMorning = breakMorning;
+    }
+
+    public int getBreakLunch() {
+        return breakLunch;
+    }
+
+    public void setBreakLunch(int breakLunch) {
+        this.breakLunch = breakLunch;
+    }
+
+    public int getBreakAfternoon() {
+        return breakAfternoon;
+    }
+
+    public void setBreakAfternoon(int breakAfternoon) {
+        this.breakAfternoon = breakAfternoon;
     }
 }

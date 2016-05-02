@@ -14,13 +14,23 @@ public class PersisterService {
     public final static String PREFIX_FILENAME = "TimeRegForrestData_";
 
     public static void doPersist() {
+        doPersist(PREFIX_FILENAME + Gui.chooseSavedDataComboBox.getSelectedItem().toString());
+    }
+
+    public static void doPersist(String filename) {
 
         PersistanceDataWrapper persistanceDataWrapper = Gui.persistanceDataWrapper;
-        String filename = (String) Gui.chooseSavedDataComboBox.getSelectedItem();
+
+        persistanceDataWrapper.setOfficeIn(Gui.txtFieldInOffice.getText());
+        persistanceDataWrapper.setOfficeOut(Gui.txtFieldOutOffice.getText());
+
+        persistanceDataWrapper.setBreakMorning(Gui.popupIntervalMorningComboBox.getSelectedIndex());
+        persistanceDataWrapper.setBreakLunch(Gui.popupIntervalLunchComboBox.getSelectedIndex());
+        persistanceDataWrapper.setBreakAfternoon(Gui.popupIntervalAfternoonComboBox.getSelectedIndex());
 
         System.out.println("persist file=" + filename + "...");
         try {
-            FileOutputStream fos = new FileOutputStream(PREFIX_FILENAME + filename);
+            FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(persistanceDataWrapper);
             oos.close();
@@ -31,6 +41,7 @@ public class PersisterService {
 
 
     public static PersistanceDataWrapper doLoad(Gui gui) {
+
         String filename = PersisterService.PREFIX_FILENAME + gui.chooseSavedDataComboBox.getSelectedItem();
         System.out.println("loading file=" + filename + "...");
         PersistanceDataWrapper persistanceDataWrapper = null;
@@ -42,6 +53,16 @@ public class PersisterService {
         } catch (Exception e) {
             System.out.println("Cannot load file!!! filename=" + filename + ", e=" + e);
         }
+
+        Gui.autoUpdateOfficeOutCheckBox.setSelected(false);
+
+        Gui.txtFieldInOffice.setText(persistanceDataWrapper.getOfficeIn());
+        Gui.txtFieldOutOffice.setText(persistanceDataWrapper.getOfficeOut());
+
+        Gui.popupIntervalMorningComboBox.setSelectedIndex(persistanceDataWrapper.getBreakMorning());
+        Gui.popupIntervalLunchComboBox.setSelectedIndex(persistanceDataWrapper.getBreakLunch());
+        Gui.popupIntervalAfternoonComboBox.setSelectedIndex(persistanceDataWrapper.getBreakAfternoon());
+
         return persistanceDataWrapper;
     }
 

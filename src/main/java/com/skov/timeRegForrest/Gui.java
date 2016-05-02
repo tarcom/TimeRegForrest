@@ -393,13 +393,12 @@ public class Gui extends JPanel {
 
 
         Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR, 12);
+        c.set(Calendar.HOUR_OF_DAY, 12);
         c.set(Calendar.MINUTE, 00);
         if (getDateTimeOfficeOut().after(c)) {
             minStr = ((String) popupIntervalLunchComboBox.getSelectedItem()).replace("min", "").trim();
             minutesToSubmit -= Integer.valueOf(minStr);
         }
-
 
         return minutesToSubmit;
     }
@@ -436,6 +435,8 @@ public class Gui extends JPanel {
                 String ObjButtons[] = {"Yes", "No"};
                 int PromptResult = JOptionPane.showOptionDialog(null, "You normally do NOT want to exit this app, but just minimize it. Are you sure you want to exit? ", "Exit?", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
                 if (PromptResult == JOptionPane.YES_OPTION) {
+                    PersisterService.doPersist();
+                    System.out.println("bye.");
                     System.exit(0);
                 }
             }

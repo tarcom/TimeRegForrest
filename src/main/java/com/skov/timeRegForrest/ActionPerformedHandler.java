@@ -21,10 +21,10 @@ public class ActionPerformedHandler  implements ActionListener {
 
         if (e.getActionCommand().endsWith("Plus")) {
             handlePlus(e);
-            PersisterService.doPersist(gui);
+            PersisterService.doPersist();
         } else if (e.getActionCommand().endsWith("Minus")) {
             handleMinus(e);
-            PersisterService.doPersist(gui);
+            PersisterService.doPersist();
         } else if (e.getActionCommand().startsWith("XP-") && e.getActionCommand().length() >= 4) {
             handleOpenJira(e);
         } else if (e.getActionCommand().startsWith(gui.LIST_JIRAS_BUTTON_PRESSED)) {

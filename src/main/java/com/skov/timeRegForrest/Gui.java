@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,9 +25,10 @@ public class Gui extends JPanel {
 
     static JLabel timeInfoLabel;
     static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox, chooseSavedDataComboBox;
+    static JComboBox popupIntervalMorningComboBox, popupIntervalLunchComboBox, popupIntervalAfternoonComboBox;
     static JCheckBox autoMinimizeCheckBox, autoUpdateOfficeOutCheckBox;
 
-    public static String FROKOST_PAUSER = "Frokost & pauser";
+    //public static String FROKOST_PAUSER = "Frokost & pauser";
 //    static HashMap<Integer, Integer> taskIds = new HashMap<Integer, Integer>();
 //    static int taskIdNext = 0;
 
@@ -61,7 +63,18 @@ public class Gui extends JPanel {
         txtFieldInOffice.setBackground(new Color(255, 255, 0));
 
         officeInPanel.add(txtFieldInOffice);
-        officeInPanel.add(new JLabel(""));
+
+
+
+
+
+        JPanel breakPanel = new JPanel(new GridLayout(1,1));
+        breakPanel.add(new JLabel("Break section:"));
+        breakPanel.setBackground(new Color(200,200,200));
+        officeInPanel.add(breakPanel);
+
+
+
         add(officeInPanel);
 
         //--
@@ -75,7 +88,27 @@ public class Gui extends JPanel {
         officeOutPanel.add(autoUpdateOfficeOutCheckBox);
 
         officeOutPanel.add(txtFieldOutOffice);
-        officeOutPanel.add(new JLabel(""));
+
+
+        //officeOutPanel.add(new JLabel(""));
+        JPanel breakPanelMorning = new JPanel(new GridLayout(1,2));
+        breakPanelMorning.add(new JLabel("Morning:"));
+        breakPanelMorning.setBackground(new Color(200, 200, 200));
+
+        ArrayList<String> minValuesArr = new ArrayList<String>();
+        for (int i = 0; i < 301 ; i = i + 5) {
+            minValuesArr.add(i + " min");
+        }
+
+        popupIntervalMorningComboBox = new JComboBox(minValuesArr.toArray());
+        popupIntervalMorningComboBox.setSelectedIndex(0);
+        breakPanelMorning.add(popupIntervalMorningComboBox);
+
+        officeOutPanel.add(breakPanelMorning);
+
+
+
+
         add(officeOutPanel);
 
         //--
@@ -88,17 +121,56 @@ public class Gui extends JPanel {
         JPanel popupIntervalPanel = new JPanel(new GridLayout());
         popupIntervalPanel.add(new JLabel("Gui popup interval: "));
         popupIntervalPanel.add(popupIntervalComboBox);
-        popupIntervalPanel.add(new JLabel(""));
+
+
+
+        //popupIntervalPanel.add(new JLabel(""));
+        JPanel breakPanelLunch = new JPanel(new GridLayout(1,2));
+        breakPanelLunch.add(new JLabel("Lunch:"));
+        breakPanelLunch.setBackground(new Color(200, 200, 200));
+
+        popupIntervalLunchComboBox = new JComboBox(minValuesArr.toArray());
+        popupIntervalLunchComboBox.setSelectedIndex(6);
+        breakPanelLunch.add(popupIntervalLunchComboBox);
+
+        popupIntervalPanel.add(breakPanelLunch);
+
+
+
+
         add(popupIntervalPanel);
 
         //--
+
+
         submitDurationMinutesComboBox = new JComboBox(minutValuesArr);
         submitDurationMinutesComboBox.setSelectedIndex(3);
 
         JPanel submitDurationPanel = new JPanel(new GridLayout());
         submitDurationPanel.add(new JLabel("Submit duration: "));
         submitDurationPanel.add(submitDurationMinutesComboBox);
-        submitDurationPanel.add(new JLabel(""));
+
+
+
+
+
+        //submitDurationPanel.add(new JLabel(""));
+
+        JPanel breakPanelDinner = new JPanel(new GridLayout(1,2));
+        breakPanelDinner.add(new JLabel("Afternoon:"));
+        breakPanelDinner.setBackground(new Color(200, 200, 200));
+
+        popupIntervalAfternoonComboBox = new JComboBox(minValuesArr.toArray());
+        popupIntervalAfternoonComboBox.setSelectedIndex(0);
+        breakPanelDinner.add(popupIntervalAfternoonComboBox);
+
+        submitDurationPanel.add(breakPanelDinner);
+
+
+
+
+
+
         add(submitDurationPanel);
         //--
 
@@ -151,19 +223,23 @@ public class Gui extends JPanel {
         JiraGuiRow jiraGuiRow = new JiraGuiRow(this, actionPerformedHandler);
 
         jiraGuiRow.addButton("Møder: Kanban", 1604);
-        jiraGuiRow.addButton("Møder: Agile (retrospective + ERFA)", 1608);
-        jiraGuiRow.addButton("Møder: Xportal (teammøder man+fre)", 870);
-        jiraGuiRow.addButton("Møder: Afklaring", 870);
-        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("Møder Xportalen ('alt andet')", 870);
+        jiraGuiRow.addButton("Intern tid - sidemandsoplæring, kurser, vidensopbygning, erfa (Viden-16)", 1709);
+      //jiraGuiRow.addButton("Intern tid - Afdelingsmøder (Afd-16)", 1708);
         jiraGuiRow.addButton("Egen administration", 1005);
         jiraGuiRow.addButton("Ikke TK prioriterede opgaver", 878);
-        jiraGuiRow.addButton("Other", 885);
-        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("Other - ikke i timesheet (konferencer/kurser)", 885);
         jiraGuiRow.addButton("Daglig forvaltning", 864);
         jiraGuiRow.addButton("Sagscontainer daglig forv.", 882);
-        jiraGuiRow.addButton("Driftstabilitet i Xportalen", 883);
         jiraGuiRow.addButton("Documentation", 881);
 
+        jiraGuiRow.addButton("Polen mentoring", 1813);
+        jiraGuiRow.addButton("Auto-test", 1881);
+        jiraGuiRow.addButton("TK erhverv samarbejde", 1343);
+        jiraGuiRow.addButton("Ny gar model samarbejde", 1345);
+        jiraGuiRow.addButton("Hjælp til projekter", 872);
+        jiraGuiRow.addButton("systemansvar", 866);
+        jiraGuiRow.addButton("ADM-16", 1708);
         jiraGuiRow.addButton("");
         jiraGuiRow.addButton("");
         jiraGuiRow.addButton("");
@@ -171,18 +247,13 @@ public class Gui extends JPanel {
         jiraGuiRow.addButton("");
         jiraGuiRow.addButton("");
         jiraGuiRow.addButton("");
-        jiraGuiRow.addButton("");
-        jiraGuiRow.addButton("");
-        jiraGuiRow.addButton("");
-
-        jiraGuiRow.addButton(FROKOST_PAUSER);
 
         add(new JLabel("github.com/tarcom/TimeRegForrest"));
 
         try {
             ActionPerformedHandler.handleLoadFile();
         } catch (NullPointerException npe) {
-            PersisterService.doPersist(this); //initial persist, so that we can load though empty values later
+            PersisterService.doPersist(); //initial persist, so that we can load though empty values later
         }
     }
 
@@ -294,9 +365,9 @@ public class Gui extends JPanel {
     protected static int getTotalSubmittedMinutesNotPauser() {
         int totalSubmittedMinutes = 0;
         for (String s : persistanceDataWrapper.getTimeRegTimeMap().keySet()) {
-            if (!FROKOST_PAUSER.equalsIgnoreCase(s)) {
+//            if (!FROKOST_PAUSER.equalsIgnoreCase(s)) {
                 totalSubmittedMinutes += persistanceDataWrapper.getTimeRegTimeMap().get(s);
-            }
+//            }
         }
         return totalSubmittedMinutes;
     }
@@ -313,6 +384,23 @@ public class Gui extends JPanel {
         long minutesToSubmit = (now.getTimeInMillis() - dateTimeOfficeIn.getTimeInMillis()) / 1000 / 60;
 
         minutesToSubmit -= getAllreadySubmittetMinutes();
+
+        String minStr = ((String) popupIntervalMorningComboBox.getSelectedItem()).replace("min", "").trim();
+        minutesToSubmit -= Integer.valueOf(minStr);
+
+        minStr = ((String) popupIntervalAfternoonComboBox.getSelectedItem()).replace("min", "").trim();
+        minutesToSubmit -= Integer.valueOf(minStr);
+
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 12);
+        c.set(Calendar.MINUTE, 00);
+        if (getDateTimeOfficeOut().after(c)) {
+            minStr = ((String) popupIntervalLunchComboBox.getSelectedItem()).replace("min", "").trim();
+            minutesToSubmit -= Integer.valueOf(minStr);
+        }
+
+
         return minutesToSubmit;
     }
 

@@ -61,10 +61,6 @@ public class JiraGuiRow {
         //--
 
         JTextField descriptionTxtField = new JTextField(name, 25);
-        if (gui.FROKOST_PAUSER.equalsIgnoreCase(name)) {
-            gui.FROKOST_PAUSER = shortcutKeyStr; //well not nice, but it works
-            descriptionTxtField.setBackground(new Color(150, 150, 150));
-        }
         rowPanel.add(descriptionTxtField);
 
         Gui.persistanceDataWrapper.getDescriptionMap().put(shortcutKeyStr, descriptionTxtField);

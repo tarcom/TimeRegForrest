@@ -1,3 +1,9 @@
 app icon
 read configuration from file (or perhaps using the -D startup command...)
 appen skal side i system tray istedet og ikke i task-baren
+
+--
+
+Make room for 3*breaks
+persist office in and office out + breaks, make it part of load mechanism
+On new day: load/copy previous day, but reset all times

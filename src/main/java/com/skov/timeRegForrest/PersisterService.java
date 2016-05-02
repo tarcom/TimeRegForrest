@@ -13,10 +13,10 @@ public class PersisterService {
 
     public final static String PREFIX_FILENAME = "TimeRegForrestData_";
 
-    public static void doPersist(Gui gui) {
+    public static void doPersist() {
 
-        PersistanceDataWrapper persistanceDataWrapper = gui.persistanceDataWrapper;
-        String filename = (String) gui.chooseSavedDataComboBox.getSelectedItem();
+        PersistanceDataWrapper persistanceDataWrapper = Gui.persistanceDataWrapper;
+        String filename = (String) Gui.chooseSavedDataComboBox.getSelectedItem();
 
         System.out.println("persist file=" + filename + "...");
         try {

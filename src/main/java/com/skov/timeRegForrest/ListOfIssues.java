@@ -13,11 +13,10 @@ public class ListOfIssues {
     public static List<String> getListOfInterestingJirasList() {
         List<String> jiras = new ArrayList<String>();
 
+        jiras.add("XP-1604 - Static issue: Kanban møder");
         jiras.add("XP-1615 - Static issue: Pokerplanning");
         jiras.add("XP-1614 - Static issue: SagsC - Forretningsprioriteret forvaltning");
         jiras.add("XP-1613 - Static issue: SagsC - IT-prioriteret forvaltning");
-        jiras.add("XP-1608 - Static issue: Agile møder (exclusiv kanban)");
-        jiras.add("XP-1604 - Static issue: Kanban møder");
         jiras.add("XP-1005 - Static issue: Egen administration vedr. Xportalen");
         jiras.add("XP-885 - Static issue: Other");
         jiras.add("XP-884 - Static issue: External project");
@@ -29,7 +28,6 @@ public class ListOfIssues {
         jiras.add("XP-877 - Static issue: TK prioriterede ændringsønsker");
         jiras.add("XP-876 - Static issue: TK prioriterede fejlrettelser");
         jiras.add("XP-874 - Static issue: Rejsetid");
-        jiras.add("XP-873 - Static issue: TK-møder");
         jiras.add("XP-872 - Static issue: Hjælp til projekter og andre forvaltninger");
         jiras.add("XP-871 - Static issue: Testmiljøer");
         jiras.add("XP-870 - Static issue: Møder Xportalen");
@@ -40,7 +38,6 @@ public class ListOfIssues {
         jiras.add("XP-882 - Static issue: SagsC - Daglig support");
         jiras.add("XP-1610 - Static issue: ServiceManager opfølgning IT");
         jiras.add("XP-1605 - Static issue: ServiceManageropfølgning TK");
-        jiras.add("XP-1609 - Static issue: Afklaringsmøder");
 
         jiras.add("---");
 

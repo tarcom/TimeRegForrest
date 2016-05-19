@@ -1,17 +1,37 @@
 package com.skov.timeRegForrest;
 
+import com.atlassian.jira.rest.client.api.JiraRestClient;
+import com.atlassian.jira.rest.client.api.JiraRestClientFactory;
+import com.atlassian.jira.rest.client.api.RestClientException;
+import com.atlassian.jira.rest.client.api.domain.Issue;
+import com.atlassian.jira.rest.client.api.domain.SearchResult;
+import com.atlassian.jira.rest.client.api.domain.input.WorklogInput;
+import com.atlassian.jira.rest.client.auth.BasicHttpAuthenticationHandler;
+import com.atlassian.jira.rest.client.internal.async.AsynchronousJiraRestClientFactory;
+import com.atlassian.util.concurrent.Effect;
+import org.joda.time.DateTime;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by ALSK on 13-01-2016.
  */
 public class ActionPerformedHandler  implements ActionListener {
+    private static final String JIRA_URL = "http://features-direct";
 
     static Gui gui;
+
+    JiraRestClient jiraRestClient;
 
     public ActionPerformedHandler(Gui gui) {
         this.gui = gui;
@@ -33,9 +53,84 @@ public class ActionPerformedHandler  implements ActionListener {
             handleResetPressed();
         } else if (e.getActionCommand().equals(Gui.LOAD_FILE)) {
             handleLoadFile();
+        } else if (e.getActionCommand().equals(Gui.SUBMIT_ALL_TO_JIRA)) {
+            handleSubmitToJira();
         }
 
         gui.handleSetTIme();
+    }
+
+    private void handleSubmitToJira() {
+        try {
+            String username = Gui.txtFieldJiraUsername.getText();
+            String password = new String(Gui.txtFieldJiraPassword.getPassword());
+            if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "JIRA username and password are required", "Missing credentials", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+
+            if (jiraRestClient == null) {
+                BasicHttpAuthenticationHandler authenticationHandler = new BasicHttpAuthenticationHandler(username, password);
+                JiraRestClientFactory factory = new AsynchronousJiraRestClientFactory();
+                jiraRestClient = factory.create(new URI(JIRA_URL), authenticationHandler);
+            }
+
+            final HashMap<String, Integer> workLogMap = new HashMap<String, Integer>();
+
+            String issueKeys = null;
+            for (Map.Entry<String, JTextField> entry : Gui.persistanceDataWrapper.getJiraNumbersMap().entrySet()) {
+                final int minutes = Gui.persistanceDataWrapper.getTimeRegTimeMap().get(entry.getKey());
+                final String issueKey = entry.getValue().getText();
+
+                if (minutes <= 0) continue;
+
+                workLogMap.put(issueKey.toUpperCase(), minutes);
+                if (issueKeys == null) {
+                    issueKeys = issueKey;
+                } else {
+                    issueKeys += "," + issueKey;
+                }
+            }
+
+            final String query = "key in (" + issueKeys + ")";
+            jiraRestClient.getSearchClient().searchJql(query).done(new Effect<SearchResult>() {
+                public void apply(SearchResult searchResult) {
+                    Iterable<Issue> results = searchResult.getIssues();
+                    for (Issue issue : results) {
+                        URI workLogUri = issue.getWorklogUri();
+                        int minutes = workLogMap.get(issue.getKey());
+                        jiraRestClient.getIssueClient().addWorklog(workLogUri,
+                                new WorklogInput(null, null, null, null, "Automatically inserted", new DateTime(), minutes, null, WorklogInput.AdjustEstimate.AUTO, null));
+                    }
+                    JOptionPane.showMessageDialog(null, "Work logs created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }).fail(new Effect<Throwable>() {
+                public void apply(Throwable throwable) {
+
+                    if (throwable instanceof RestClientException) {
+                        RestClientException e = (RestClientException) throwable;
+                        if (e.getStatusCode().get() == 401) {
+                            JOptionPane.showMessageDialog(null, "Incorrect username or password", "Invalid credentials", JOptionPane.ERROR_MESSAGE);
+                        } else if (e.getStatusCode().get() == 403) {
+                            String msg = "Username and password is correct, but the system might have detected too may consecutive requests.\n" +
+                                    "Please login to JIRA in a browser session and try again.";
+                            JOptionPane.showMessageDialog(null, msg, "JIRA access forbidden", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    throwable.printStackTrace(pw);
+                    JOptionPane.showMessageDialog(null, "JQL query failed: '" + query + "'.\n" +
+                            (throwable.getMessage() == null ? "" : throwable.getMessage()) + "\n"
+                            + sw.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            });
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void handleLoadFile() {

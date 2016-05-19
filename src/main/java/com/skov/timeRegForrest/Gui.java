@@ -18,6 +18,7 @@ public class Gui extends JPanel {
 
     static ActionPerformedHandler actionPerformedHandler;
 
+    public static final String SUBMIT_ALL_TO_JIRA = "SUBMIT ALL TO JIRA";
     public static final String LIST_JIRAS_BUTTON_PRESSED = "listJirasButtonPressed";
     public static final String LOAD_FILE = "Load file";
     static JFrame frame;
@@ -27,6 +28,8 @@ public class Gui extends JPanel {
     static JComboBox popupIntervalComboBox, submitDurationMinutesComboBox, chooseSavedDataComboBox;
     static JComboBox popupIntervalMorningComboBox, popupIntervalLunchComboBox, popupIntervalAfternoonComboBox;
     static JCheckBox autoMinimizeCheckBox, autoUpdateOfficeOutCheckBox;
+    static JPasswordField txtFieldJiraPassword;
+    static JTextField txtFieldJiraUsername;
 
     public static PersistanceDataWrapper persistanceDataWrapper;
 
@@ -41,7 +44,6 @@ public class Gui extends JPanel {
         super.setLayout(new GridLayout(0, 1));
 
         //--
-
         this.actionPerformedHandler = new ActionPerformedHandler(this);
 
         //--
@@ -78,6 +80,7 @@ public class Gui extends JPanel {
         JPanel officeOutPanel = new JPanel(new GridLayout(1,2));
 
         txtFieldOutOffice = new JTextField(sdf.format(Calendar.getInstance().getTime()));
+        //txtFieldOutOffice.setSize(new Dimension(100, 15)); // force to be as small as possible?
 
         autoUpdateOfficeOutCheckBox = new JCheckBox("Office OUT:");
         autoUpdateOfficeOutCheckBox.setSelected(true);
@@ -182,12 +185,18 @@ public class Gui extends JPanel {
         chooseSavedDataPanel.add(new JLabel("Saved datafile: (" + savedFiles.length + " avail.)"));
         chooseSavedDataPanel.add(chooseSavedDataComboBox);
 
-        chooseSavedDataPanel.add(new JLabel(""));
+//        chooseSavedDataPanel.add(new JLabel(""));
 //        JButton savedFileButton = new JButton(LOAD_FILE);
 //        savedFileButton.setActionCommand(LOAD_FILE);
 //        savedFileButton.addActionListener(actionPerformedHandler);
 //        chooseSavedDataPanel.add(savedFileButton);
 
+
+        JPanel jiraUsernamePanel = new JPanel(new GridLayout(1,2));
+        jiraUsernamePanel.add(new JLabel("JIRA Username: "));
+        txtFieldJiraUsername = new JTextField();
+        jiraUsernamePanel.add(txtFieldJiraUsername);
+        chooseSavedDataPanel.add(jiraUsernamePanel);
 
         add(chooseSavedDataPanel);
 
@@ -206,12 +215,15 @@ public class Gui extends JPanel {
         resetButton.addActionListener(actionPerformedHandler);
         autoMinimizeAndResetPanel.add(resetButton);
 
-        autoMinimizeAndResetPanel.add(new JLabel(""));
+//        autoMinimizeAndResetPanel.add(new JLabel());
+        JPanel jiraPasswordPanel = new JPanel(new GridLayout(1,2));
+        jiraPasswordPanel.add(new JLabel("JIRA Password: "));
+        txtFieldJiraPassword = new JPasswordField();
+        jiraPasswordPanel.add(txtFieldJiraPassword);
+        autoMinimizeAndResetPanel.add(jiraPasswordPanel);
 
         add(autoMinimizeAndResetPanel);
         //--
-
-        add(new JLabel(""));
 
         timeInfoLabel = new JLabel("Please set office int time");
         add(timeInfoLabel);
@@ -244,7 +256,14 @@ public class Gui extends JPanel {
         jiraGuiRow.addButton("");
         jiraGuiRow.addButton("");
 
-        add(new JLabel("github.com/tarcom/TimeRegForrest"));
+        JPanel footerPanel = new JPanel( new GridLayout());
+        footerPanel.add(new JLabel("github.com/tarcom/TimeRegForrest"));
+        JButton btnJiraSubmit = new JButton("Submit to JIRA");
+        btnJiraSubmit.setActionCommand(SUBMIT_ALL_TO_JIRA);
+        btnJiraSubmit.addActionListener(actionPerformedHandler);
+        footerPanel.add(btnJiraSubmit);
+
+        add(footerPanel);
 
         try {
             ActionPerformedHandler.handleLoadFile();
@@ -410,12 +429,12 @@ public class Gui extends JPanel {
     }
 
     protected static void createGUI() {
-        Gui buttonContentPane = new Gui();
-        buttonContentPane.setOpaque(true);
-
 
         JFrame.setDefaultLookAndFeelDecorated(true);
         frame = new JFrame("TimeRegForrest");
+
+        Gui buttonContentPane = new Gui();
+        buttonContentPane.setOpaque(true);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.getRootPane().setDefaultButton(button);

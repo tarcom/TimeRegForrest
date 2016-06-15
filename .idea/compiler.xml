@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="projects" />
+        <module name="TimeRegForrest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="projects" target="1.5" />
+      <module name="TimeRegForrest" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -20,7 +20,6 @@ import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -79,8 +78,8 @@ public class ActionPerformedHandler  implements ActionListener {
             final HashMap<String, Integer> workLogMap = new HashMap<String, Integer>();
 
             String issueKeys = null;
-            for (Map.Entry<String, JTextField> entry : Gui.persistanceDataWrapper.getJiraNumbersMap().entrySet()) {
-                final int minutes = Gui.persistanceDataWrapper.getTimeRegTimeMap().get(entry.getKey());
+            for (Map.Entry<String, JTextField> entry : Gui.persistenceDataWrapper.getJiraNumbersMap().entrySet()) {
+                final int minutes = Gui.persistenceDataWrapper.getTimeRegTimeMap().get(entry.getKey());
                 final String issueKey = entry.getValue().getText();
 
                 if (minutes <= 0) continue;
@@ -137,41 +136,41 @@ public class ActionPerformedHandler  implements ActionListener {
         PersistanceDataWrapper persistanceDataWrapperCOPY = PersisterService.doLoad(gui);
 
         for (String key : persistanceDataWrapperCOPY.getTimeRegTimeMap().keySet()) {
-            Gui.persistanceDataWrapper.getTimeRegTimeMap().put(key, persistanceDataWrapperCOPY.getTimeRegTimeMap().get(key));
+            Gui.persistenceDataWrapper.getTimeRegTimeMap().put(key, persistanceDataWrapperCOPY.getTimeRegTimeMap().get(key));
         }
 
         for (String key : persistanceDataWrapperCOPY.getTimeRegSubmittedTimeMap().keySet()) {
-            Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(key).setText(persistanceDataWrapperCOPY.getTimeRegSubmittedTimeMap().get(key).getText());
+            Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().get(key).setText(persistanceDataWrapperCOPY.getTimeRegSubmittedTimeMap().get(key).getText());
         }
 
 
         for (String key : persistanceDataWrapperCOPY.getTimeRegNameMap().keySet()) {
-            Gui.persistanceDataWrapper.getTimeRegNameMap().put(key, persistanceDataWrapperCOPY.getTimeRegNameMap().get(key));
+            Gui.persistenceDataWrapper.getTimeRegNameMap().put(key, persistanceDataWrapperCOPY.getTimeRegNameMap().get(key));
         }
 
 
         for (String key : persistanceDataWrapperCOPY.getJiraNumbersMap().keySet()) {
-            Gui.persistanceDataWrapper.getJiraNumbersMap().get(key).setText(persistanceDataWrapperCOPY.getJiraNumbersMap().get(key).getText());
+            Gui.persistenceDataWrapper.getJiraNumbersMap().get(key).setText(persistanceDataWrapperCOPY.getJiraNumbersMap().get(key).getText());
         }
 
 
         for (String key : persistanceDataWrapperCOPY.getDescriptionMap().keySet()) {
-            Gui.persistanceDataWrapper.getDescriptionMap().get(key).setText(persistanceDataWrapperCOPY.getDescriptionMap().get(key).getText());
+            Gui.persistenceDataWrapper.getDescriptionMap().get(key).setText(persistanceDataWrapperCOPY.getDescriptionMap().get(key).getText());
         }
     }
 
     private void handleResetPressed() {
-        Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(1);
-        Gui.persistanceDataWrapper.getTimeRegTimeMap().get(1);
+        Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().get(1);
+        Gui.persistenceDataWrapper.getTimeRegTimeMap().get(1);
 
-        for (String s : Gui.persistanceDataWrapper.getTimeRegTimeMap().keySet()) {
-            Gui.persistanceDataWrapper.getTimeRegTimeMap().put(s, 0);
+        for (String s : Gui.persistenceDataWrapper.getTimeRegTimeMap().keySet()) {
+            Gui.persistenceDataWrapper.getTimeRegTimeMap().put(s, 0);
         }
 
-        for (String s : Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().keySet()) {
-            JButton jButton = Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(s);
+        for (String s : Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().keySet()) {
+            JButton jButton = Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().get(s);
             jButton.setText("           ");
-            Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().put(s, jButton);
+            Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().put(s, jButton);
         }
         System.out.println("reset pressed!!");
     }
@@ -187,17 +186,17 @@ public class ActionPerformedHandler  implements ActionListener {
                 possibilities,
                 possibilities[0]);
 
-        JTextField jTextFieldJira = Gui.persistanceDataWrapper.getJiraNumbersMap().get(e.getActionCommand().replace(gui.LIST_JIRAS_BUTTON_PRESSED, ""));
+        JTextField jTextFieldJira = Gui.persistenceDataWrapper.getJiraNumbersMap().get(e.getActionCommand().replace(gui.LIST_JIRAS_BUTTON_PRESSED, ""));
         jTextFieldJira.setText(ListOfIssues.getJiraFromStr(s));
 
-        JTextField jTextFieldDesc = Gui.persistanceDataWrapper.getDescriptionMap().get(e.getActionCommand().replace(gui.LIST_JIRAS_BUTTON_PRESSED, ""));
+        JTextField jTextFieldDesc = Gui.persistenceDataWrapper.getDescriptionMap().get(e.getActionCommand().replace(gui.LIST_JIRAS_BUTTON_PRESSED, ""));
         jTextFieldDesc.setText(ListOfIssues.getDescriptionFromStr(s));
     }
 
     private void handleOpenJira(ActionEvent e) {
         System.out.println(e.getActionCommand());
         String shortCutKey = e.getActionCommand();
-        JTextField jTextField = Gui.persistanceDataWrapper.getJiraNumbersMap().get(shortCutKey.replace("XP-", ""));
+        JTextField jTextField = Gui.persistenceDataWrapper.getJiraNumbersMap().get(shortCutKey.replace("XP-", ""));
         String jiraNumber = jTextField.getText().trim();
         openUri("http://features.nykreditnet.net/browse/" + jiraNumber);
     }
@@ -205,19 +204,19 @@ public class ActionPerformedHandler  implements ActionListener {
     private void handleMinus(ActionEvent e) {
         String minusName = e.getActionCommand().replace("Minus", "");
 
-        Gui.persistanceDataWrapper.getTimeRegTimeMap().put(minusName, Gui.persistanceDataWrapper.getTimeRegTimeMap().get(minusName) - gui.getSubmitDurationMinutes());
-        Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(minusName).setText(gui.convertMinutesToHouersAndMinutes(Gui.persistanceDataWrapper.getTimeRegTimeMap().get(minusName)));
+        Gui.persistenceDataWrapper.getTimeRegTimeMap().put(minusName, Gui.persistenceDataWrapper.getTimeRegTimeMap().get(minusName) - gui.getSubmitDurationMinutes());
+        Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().get(minusName).setText(gui.convertMinutesToHouersAndMinutes(Gui.persistenceDataWrapper.getTimeRegTimeMap().get(minusName)));
     }
 
     private void handlePlus(ActionEvent e) {
         String plusName = e.getActionCommand().replace("Plus", "");
 
-        Gui.persistanceDataWrapper.getTimeRegTimeMap().put(plusName, Gui.persistanceDataWrapper.getTimeRegTimeMap().get(plusName) + gui.getSubmitDurationMinutes());
-        String time = gui.convertMinutesToHouersAndMinutes(Gui.persistanceDataWrapper.getTimeRegTimeMap().get(plusName));
+        Gui.persistenceDataWrapper.getTimeRegTimeMap().put(plusName, Gui.persistenceDataWrapper.getTimeRegTimeMap().get(plusName) + gui.getSubmitDurationMinutes());
+        String time = gui.convertMinutesToHouersAndMinutes(Gui.persistenceDataWrapper.getTimeRegTimeMap().get(plusName));
         String submitTimeTxt = "<html><FONT color=\"#000099\"><U>" + time + "</U></FONT></HTML>";
 
 
-        Gui.persistanceDataWrapper.getTimeRegSubmittedTimeMap().get(plusName).setText(submitTimeTxt);
+        Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().get(plusName).setText(submitTimeTxt);
 
         if (gui.autoMinimizeCheckBox.isSelected() && gui.getMinutesToSubmit() < gui.getSubmitDurationMinutes()) {
             gui.frame.setState(Frame.ICONIFIED);

@@ -19,7 +19,7 @@ public class PersisterService {
 
     public static void doPersist(String filename) {
 
-        PersistanceDataWrapper persistanceDataWrapper = Gui.persistanceDataWrapper;
+        PersistanceDataWrapper persistanceDataWrapper = Gui.persistenceDataWrapper;
 
         persistanceDataWrapper.setOfficeIn(Gui.txtFieldInOffice.getText());
         persistanceDataWrapper.setOfficeOut(Gui.txtFieldOutOffice.getText());

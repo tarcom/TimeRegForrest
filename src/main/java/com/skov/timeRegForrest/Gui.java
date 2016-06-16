@@ -31,7 +31,7 @@ public class Gui extends JPanel {
     static JPasswordField txtFieldJiraPassword;
     static JTextField txtFieldJiraUsername;
 
-    public static PersistanceDataWrapper persistanceDataWrapper;
+    public static PersistenceDataWrapper persistenceDataWrapper;
 
 
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -39,7 +39,7 @@ public class Gui extends JPanel {
 
     public Gui() {
 
-        persistanceDataWrapper = new PersistanceDataWrapper();
+        persistenceDataWrapper = new PersistenceDataWrapper();
 
         super.setLayout(new GridLayout(0, 1));
 
@@ -371,7 +371,7 @@ public class Gui extends JPanel {
 
     protected static int getTotalSubmittedMinutes() {
         int totalSubmittedMinutes = 0;
-        for (Integer t : persistanceDataWrapper.getTimeRegTimeMap().values()) {
+        for (Integer t : persistenceDataWrapper.getTimeRegTimeMap().values()) {
             totalSubmittedMinutes += t;
         }
         return totalSubmittedMinutes;
@@ -379,9 +379,9 @@ public class Gui extends JPanel {
 
     protected static int getTotalSubmittedMinutesNotPauser() {
         int totalSubmittedMinutes = 0;
-        for (String s : persistanceDataWrapper.getTimeRegTimeMap().keySet()) {
+        for (String s : persistenceDataWrapper.getTimeRegTimeMap().keySet()) {
 //            if (!FROKOST_PAUSER.equalsIgnoreCase(s)) {
-                totalSubmittedMinutes += persistanceDataWrapper.getTimeRegTimeMap().get(s);
+                totalSubmittedMinutes += persistenceDataWrapper.getTimeRegTimeMap().get(s);
 //            }
         }
         return totalSubmittedMinutes;
@@ -421,7 +421,7 @@ public class Gui extends JPanel {
 
     static long getAllreadySubmittetMinutes() {
         long duration = 0l;
-        for (int time : persistanceDataWrapper.getTimeRegTimeMap().values()) {
+        for (int time : persistenceDataWrapper.getTimeRegTimeMap().values()) {
             duration += time;
         }
 

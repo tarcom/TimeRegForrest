@@ -133,7 +133,7 @@ public class ActionPerformedHandler  implements ActionListener {
     }
 
     public static void handleLoadFile() {
-        PersistanceDataWrapper persistanceDataWrapperCOPY = PersisterService.doLoad(gui);
+        PersistenceDataWrapper persistanceDataWrapperCOPY = PersisterService.doLoad(gui);
 
         for (String key : persistanceDataWrapperCOPY.getTimeRegTimeMap().keySet()) {
             Gui.persistenceDataWrapper.getTimeRegTimeMap().put(key, persistanceDataWrapperCOPY.getTimeRegTimeMap().get(key));

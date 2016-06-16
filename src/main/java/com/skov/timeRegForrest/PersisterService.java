@@ -19,7 +19,7 @@ public class PersisterService {
 
     public static void doPersist(String filename) {
 
-        PersistanceDataWrapper persistanceDataWrapper = Gui.persistenceDataWrapper;
+        PersistenceDataWrapper persistanceDataWrapper = Gui.persistenceDataWrapper;
 
         persistanceDataWrapper.setOfficeIn(Gui.txtFieldInOffice.getText());
         persistanceDataWrapper.setOfficeOut(Gui.txtFieldOutOffice.getText());
@@ -40,15 +40,15 @@ public class PersisterService {
     }
 
 
-    public static PersistanceDataWrapper doLoad(Gui gui) {
+    public static PersistenceDataWrapper doLoad(Gui gui) {
 
         String filename = PersisterService.PREFIX_FILENAME + gui.chooseSavedDataComboBox.getSelectedItem();
         System.out.println("loading file=" + filename + "...");
-        PersistanceDataWrapper persistanceDataWrapper = null;
+        PersistenceDataWrapper persistanceDataWrapper = null;
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            persistanceDataWrapper = (PersistanceDataWrapper) ois.readObject();
+            persistanceDataWrapper = (PersistenceDataWrapper) ois.readObject();
             ois.close();
         } catch (Exception e) {
             System.out.println("Cannot load file!!! filename=" + filename + ", e=" + e);

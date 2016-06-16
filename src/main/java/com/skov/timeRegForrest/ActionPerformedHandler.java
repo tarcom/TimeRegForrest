@@ -40,10 +40,10 @@ public class ActionPerformedHandler  implements ActionListener {
 
         if (e.getActionCommand().endsWith("Plus")) {
             handlePlus(e);
-            PersisterService.doPersist();
+            PersisterService.getInstance().doPersist();
         } else if (e.getActionCommand().endsWith("Minus")) {
             handleMinus(e);
-            PersisterService.doPersist();
+            PersisterService.getInstance().doPersist();
         } else if (e.getActionCommand().startsWith("XP-") && e.getActionCommand().length() >= 4) {
             handleOpenJira(e);
         } else if (e.getActionCommand().startsWith(gui.LIST_JIRAS_BUTTON_PRESSED)) {
@@ -51,7 +51,8 @@ public class ActionPerformedHandler  implements ActionListener {
         } else if (e.getActionCommand().equals("RESET")) {
             handleResetPressed();
         } else if (e.getActionCommand().equals(Gui.LOAD_FILE)) {
-            handleLoadFile();
+            PersistenceDataWrapper persistanceDataWrapperCOPY = PersisterService.getInstance().doLoad(gui);
+            handleLoadFileWithTime(persistanceDataWrapperCOPY);
         } else if (e.getActionCommand().equals(Gui.SUBMIT_ALL_TO_JIRA)) {
             handleSubmitToJira();
         }
@@ -132,9 +133,33 @@ public class ActionPerformedHandler  implements ActionListener {
         }
     }
 
-    public static void handleLoadFile() {
-        PersistenceDataWrapper persistanceDataWrapperCOPY = PersisterService.doLoad(gui);
+    public static void handleLoadFile(PersistenceDataWrapper persistanceDataWrapperCOPY) {
 
+        Gui.autoUpdateOfficeOutCheckBox.setSelected(false);
+
+        Gui.txtFieldInOffice.setText(persistanceDataWrapperCOPY.getOfficeIn());
+        Gui.persistenceDataWrapper.setOfficeIn(persistanceDataWrapperCOPY.getOfficeIn());
+        Gui.txtFieldOutOffice.setText(persistanceDataWrapperCOPY.getOfficeOut());
+        Gui.persistenceDataWrapper.setOfficeOut(persistanceDataWrapperCOPY.getOfficeOut());
+
+        Gui.popupIntervalMorningComboBox.setSelectedIndex(persistanceDataWrapperCOPY.getBreakMorning());
+        Gui.persistenceDataWrapper.setBreakMorning(persistanceDataWrapperCOPY.getBreakMorning());
+        Gui.popupIntervalLunchComboBox.setSelectedIndex(persistanceDataWrapperCOPY.getBreakLunch());
+        Gui.persistenceDataWrapper.setBreakLunch(persistanceDataWrapperCOPY.getBreakLunch());
+        Gui.popupIntervalAfternoonComboBox.setSelectedIndex(persistanceDataWrapperCOPY.getBreakAfternoon());
+        Gui.persistenceDataWrapper.setBreakAfternoon(persistanceDataWrapperCOPY.getBreakAfternoon());
+
+        for (String key : persistanceDataWrapperCOPY.getJiraNumbersMap().keySet()) {
+            Gui.persistenceDataWrapper.getJiraNumbersMap().get(key).setText(persistanceDataWrapperCOPY.getJiraNumbersMap().get(key).getText());
+        }
+
+
+        for (String key : persistanceDataWrapperCOPY.getDescriptionMap().keySet()) {
+            Gui.persistenceDataWrapper.getDescriptionMap().get(key).setText(persistanceDataWrapperCOPY.getDescriptionMap().get(key).getText());
+        }
+    }
+
+    public static void handleLoadFileWithTime(PersistenceDataWrapper persistanceDataWrapperCOPY) {
         for (String key : persistanceDataWrapperCOPY.getTimeRegTimeMap().keySet()) {
             Gui.persistenceDataWrapper.getTimeRegTimeMap().put(key, persistanceDataWrapperCOPY.getTimeRegTimeMap().get(key));
         }
@@ -148,15 +173,7 @@ public class ActionPerformedHandler  implements ActionListener {
             Gui.persistenceDataWrapper.getTimeRegNameMap().put(key, persistanceDataWrapperCOPY.getTimeRegNameMap().get(key));
         }
 
-
-        for (String key : persistanceDataWrapperCOPY.getJiraNumbersMap().keySet()) {
-            Gui.persistenceDataWrapper.getJiraNumbersMap().get(key).setText(persistanceDataWrapperCOPY.getJiraNumbersMap().get(key).getText());
-        }
-
-
-        for (String key : persistanceDataWrapperCOPY.getDescriptionMap().keySet()) {
-            Gui.persistenceDataWrapper.getDescriptionMap().get(key).setText(persistanceDataWrapperCOPY.getDescriptionMap().get(key).getText());
-        }
+        handleLoadFile(persistanceDataWrapperCOPY);
     }
 
     private void handleResetPressed() {

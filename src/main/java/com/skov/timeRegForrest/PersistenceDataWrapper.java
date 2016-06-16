@@ -9,7 +9,6 @@ import java.util.HashMap;
  */
 public class PersistenceDataWrapper implements Serializable {
 
-
     private HashMap<String, JTextField> jiraNumbersMap = new HashMap<String, JTextField>();
     private HashMap<String, JButton> timeRegSubmittedTimeMap = new HashMap<String, JButton>();
     private HashMap<String, JTextField> descriptionMap = new HashMap<String, JTextField>();

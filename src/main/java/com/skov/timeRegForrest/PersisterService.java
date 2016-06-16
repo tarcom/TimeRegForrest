@@ -1,5 +1,7 @@
 package com.skov.timeRegForrest;
 
+import org.joda.time.DateTime;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,61 +14,101 @@ import java.util.List;
 public class PersisterService {
 
     public final static String PREFIX_FILENAME = "TimeRegForrestData_";
+    private static final String EARLY_DATE = "2000-01-01";
+    private static final String DATE_PATTERN = "yyyy-MM-dd";
 
-    public static void doPersist() {
+    private static PersisterService instance = new PersisterService();
+
+    private PersisterService() {
+
+    }
+
+    public static PersisterService getInstance() {
+        return instance;
+    }
+
+    public void createToday() {
+        doPersist();
+    }
+
+    public void doPersist() {
         doPersist(PREFIX_FILENAME + Gui.chooseSavedDataComboBox.getSelectedItem().toString());
     }
 
-    public static void doPersist(String filename) {
+    public void doPersist(String filename) {
 
-        PersistenceDataWrapper persistanceDataWrapper = Gui.persistenceDataWrapper;
+        PersistenceDataWrapper persistenceDataWrapper = Gui.persistenceDataWrapper;
 
-        persistanceDataWrapper.setOfficeIn(Gui.txtFieldInOffice.getText());
-        persistanceDataWrapper.setOfficeOut(Gui.txtFieldOutOffice.getText());
+        persistenceDataWrapper.setOfficeIn(Gui.txtFieldInOffice.getText());
+        persistenceDataWrapper.setOfficeOut(Gui.txtFieldOutOffice.getText());
 
-        persistanceDataWrapper.setBreakMorning(Gui.popupIntervalMorningComboBox.getSelectedIndex());
-        persistanceDataWrapper.setBreakLunch(Gui.popupIntervalLunchComboBox.getSelectedIndex());
-        persistanceDataWrapper.setBreakAfternoon(Gui.popupIntervalAfternoonComboBox.getSelectedIndex());
+        persistenceDataWrapper.setBreakMorning(Gui.popupIntervalMorningComboBox.getSelectedIndex());
+        persistenceDataWrapper.setBreakLunch(Gui.popupIntervalLunchComboBox.getSelectedIndex());
+        persistenceDataWrapper.setBreakAfternoon(Gui.popupIntervalAfternoonComboBox.getSelectedIndex());
 
         System.out.println("persist file=" + filename + "...");
         try {
             FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(persistanceDataWrapper);
+            oos.writeObject(persistenceDataWrapper);
             oos.close();
         }catch (Exception e) {
             System.out.println("Cannot persist file!!!" + e);
         }
     }
 
+    public PersistenceDataWrapper doLoadLatest() {
+        List<String> storedFiles = getStoredFiles();
+        if (storedFiles.size() == 0) {
+            return null;
+        }
 
-    public static PersistenceDataWrapper doLoad(Gui gui) {
+        DateTime latestDate = DateTime.parse(EARLY_DATE);
+        for(String storedFile : storedFiles) {
+            DateTime storedDate = DateTime.parse(storedFile);
+            if (storedDate.isAfter(latestDate)) {
+                latestDate = storedDate;
+            }
+        }
 
+        if (latestDate.isAfter(DateTime.parse(EARLY_DATE))) {
+            return doLoad(PersisterService.PREFIX_FILENAME + latestDate.toString(DATE_PATTERN));
+        }
+
+        return null;
+    }
+
+    public PersistenceDataWrapper doLoad(Gui gui) {
         String filename = PersisterService.PREFIX_FILENAME + gui.chooseSavedDataComboBox.getSelectedItem();
+        return doLoad(filename);
+    }
+
+    public PersistenceDataWrapper doLoad(String filename) {
         System.out.println("loading file=" + filename + "...");
-        PersistenceDataWrapper persistanceDataWrapper = null;
+        PersistenceDataWrapper persistenceDataWrapper = null;
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            persistanceDataWrapper = (PersistenceDataWrapper) ois.readObject();
+            persistenceDataWrapper = (PersistenceDataWrapper) ois.readObject();
             ois.close();
         } catch (Exception e) {
             System.out.println("Cannot load file!!! filename=" + filename + ", e=" + e);
         }
 
-        Gui.autoUpdateOfficeOutCheckBox.setSelected(false);
-
-        Gui.txtFieldInOffice.setText(persistanceDataWrapper.getOfficeIn());
-        Gui.txtFieldOutOffice.setText(persistanceDataWrapper.getOfficeOut());
-
-        Gui.popupIntervalMorningComboBox.setSelectedIndex(persistanceDataWrapper.getBreakMorning());
-        Gui.popupIntervalLunchComboBox.setSelectedIndex(persistanceDataWrapper.getBreakLunch());
-        Gui.popupIntervalAfternoonComboBox.setSelectedIndex(persistanceDataWrapper.getBreakAfternoon());
-
-        return persistanceDataWrapper;
+        return persistenceDataWrapper;
     }
 
-    public static List<String> getAvailableFiles() {
+    public List<String> getAvailableFiles() {
+        List<String> list = getStoredFiles();
+
+        if (!list.contains(generateTodaysFile())) {
+            list.add(generateTodaysFile());
+        }
+
+        return list;
+    }
+
+    private List<String> getStoredFiles() {
         List<String> list = new ArrayList<String>();
 
         File folder = new File(".");
@@ -82,22 +124,17 @@ public class PersisterService {
                 System.out.println("Directory " + listOfFiles[i].getName());
             }
         }
-
-        if (!list.contains(generateTodaysFile())) {
-            list.add(generateTodaysFile());
-        }
-
         return list;
     }
 
-    public static String[] getAvaiableFilesStrArr() {
-        List<String> avaiableFiles = getAvailableFiles();
-        String[] array = avaiableFiles.toArray(new String[avaiableFiles.size()]);
+    public String[] getAvailableFilesStrArr() {
+        List<String> availableFiles = getAvailableFiles();
+        String[] array = availableFiles.toArray(new String[availableFiles.size()]);
         return array;
     }
 
-    private static String generateTodaysFile() {
-        return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    private String generateTodaysFile() {
+        return new SimpleDateFormat(DATE_PATTERN).format(new Date());
     }
 
 }

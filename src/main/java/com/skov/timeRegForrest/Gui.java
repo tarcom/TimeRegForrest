@@ -175,9 +175,9 @@ public class Gui extends JPanel {
 
 
         //--
-        String[] savedFiles = PersisterService.getAvaiableFilesStrArr();
+        String[] savedFiles = PersisterService.getInstance().getAvailableFilesStrArr();
         chooseSavedDataComboBox = new JComboBox(savedFiles);
-        chooseSavedDataComboBox.setSelectedIndex(PersisterService.getAvailableFiles().size()-1);
+        chooseSavedDataComboBox.setSelectedIndex(PersisterService.getInstance().getAvailableFiles().size()-1);
         chooseSavedDataComboBox.setActionCommand(LOAD_FILE);
         chooseSavedDataComboBox.addActionListener(actionPerformedHandler);
 
@@ -266,9 +266,16 @@ public class Gui extends JPanel {
         add(footerPanel);
 
         try {
-            ActionPerformedHandler.handleLoadFile();
+            PersistenceDataWrapper dataWrapper = PersisterService.getInstance().doLoadLatest();
+            if (dataWrapper == null) {
+                dataWrapper = PersisterService.getInstance().doLoad(this);
+                ActionPerformedHandler.handleLoadFileWithTime(dataWrapper);
+            } else {
+                ActionPerformedHandler.handleLoadFile(dataWrapper);
+                PersisterService.getInstance().doPersist();
+            }
         } catch (NullPointerException npe) {
-            PersisterService.doPersist(); //initial persist, so that we can load though empty values later
+            PersisterService.getInstance().createToday(); //initial persist, so that we can load though empty values later
         }
     }
 
@@ -450,7 +457,7 @@ public class Gui extends JPanel {
                 String ObjButtons[] = {"Yes", "No"};
                 int PromptResult = JOptionPane.showOptionDialog(null, "You normally do NOT want to exit this app, but just minimize it. Are you sure you want to exit? ", "Exit?", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
                 if (PromptResult == JOptionPane.YES_OPTION) {
-                    PersisterService.doPersist();
+                    PersisterService.getInstance().doPersist();
                     System.out.println("bye.");
                     System.exit(0);
                 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by ALSK on 22-01-2016.
  */
-public class PersistanceDataWrapper implements Serializable {
+public class PersistenceDataWrapper implements Serializable {
 
 
     private HashMap<String, JTextField> jiraNumbersMap = new HashMap<String, JTextField>();
@@ -20,7 +20,7 @@ public class PersistanceDataWrapper implements Serializable {
 
     private int breakMorning, breakLunch, breakAfternoon;
 
-    public PersistanceDataWrapper() {
+    public PersistenceDataWrapper() {
     }
 
     public HashMap<String, JTextField> getJiraNumbersMap() {

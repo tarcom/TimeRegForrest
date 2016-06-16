@@ -1,9 +1,21 @@
-app icon
-read configuration from file (or perhaps using the -D startup command...)
+When you open app, make a copy all of yesterdays jira list, do not use default...
+ - vedligeholdes evt. med en xml config fil...
+ - On new day: load/copy previous day, but reset all times
+
 appen skal side i system tray istedet og ikke i task-baren
+
+app icon
+
+
+make popup showing resently jira's
+http://features/issues/?jql=project%20%3D%20xportalen%20AND%20id%20!%3D%20%22XP-867%22%20%20AND%20(summary%20~%20%22Static%20Issue%22%20OR%20assignee%20%3D%20currentUser()%20AND%20((status%20%3D%20%22Next%22%20OR%20status%20%3D%20%22In%20Progress%22%20OR%20status%20%3D%20%22Ready%20for%20test%22%20OR%20status%20%3D%20%22In%20test%22%20OR%20status%20%3D%20Done%20%20OR%20status%20%3D%20%22In%20Medio%22)%20AND%20updated%20%3E%3D%20-7d))%20ORDER%20BY%20key%20DESC%2C%20summary%20ASC
+http://wiki/pages/viewpage.action?pageId=58687576
 
 --
 
-Make room for 3*breaks
 persist office in and office out + breaks, make it part of load mechanism
-On new day: load/copy previous day, but reset all times
+
+
+legacy:
+read configuration from file (or perhaps using the -D startup command...)
+ - so you can setup all the jiras that you specifically want as default

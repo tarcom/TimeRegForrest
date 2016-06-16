@@ -177,7 +177,7 @@ public class Gui extends JPanel {
         //--
         String[] savedFiles = PersisterService.getAvaiableFilesStrArr();
         chooseSavedDataComboBox = new JComboBox(savedFiles);
-        chooseSavedDataComboBox.setSelectedIndex(PersisterService.getAvaiableFiles().size()-1);
+        chooseSavedDataComboBox.setSelectedIndex(PersisterService.getAvailableFiles().size()-1);
         chooseSavedDataComboBox.setActionCommand(LOAD_FILE);
         chooseSavedDataComboBox.addActionListener(actionPerformedHandler);
 

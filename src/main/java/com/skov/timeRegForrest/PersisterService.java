@@ -66,7 +66,7 @@ public class PersisterService {
         return persistanceDataWrapper;
     }
 
-    public static List<String> getAvaiableFiles() {
+    public static List<String> getAvailableFiles() {
         List<String> list = new ArrayList<String>();
 
         File folder = new File(".");
@@ -91,7 +91,7 @@ public class PersisterService {
     }
 
     public static String[] getAvaiableFilesStrArr() {
-        List<String> avaiableFiles = getAvaiableFiles();
+        List<String> avaiableFiles = getAvailableFiles();
         String[] array = avaiableFiles.toArray(new String[avaiableFiles.size()]);
         return array;
     }

@@ -31,7 +31,7 @@ public class Gui extends JPanel {
     static JPasswordField txtFieldJiraPassword;
     static JTextField txtFieldJiraUsername;
 
-    public static PersistanceDataWrapper persistanceDataWrapper;
+    public static PersistenceDataWrapper persistenceDataWrapper;
 
 
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -39,7 +39,7 @@ public class Gui extends JPanel {
 
     public Gui() {
 
-        persistanceDataWrapper = new PersistanceDataWrapper();
+        persistenceDataWrapper = new PersistenceDataWrapper();
 
         super.setLayout(new GridLayout(0, 1));
 
@@ -175,9 +175,9 @@ public class Gui extends JPanel {
 
 
         //--
-        String[] savedFiles = PersisterService.getAvaiableFilesStrArr();
+        String[] savedFiles = PersisterService.getInstance().getAvailableFilesStrArr();
         chooseSavedDataComboBox = new JComboBox(savedFiles);
-        chooseSavedDataComboBox.setSelectedIndex(PersisterService.getAvaiableFiles().size()-1);
+        chooseSavedDataComboBox.setSelectedIndex(PersisterService.getInstance().getAvailableFiles().size()-1);
         chooseSavedDataComboBox.setActionCommand(LOAD_FILE);
         chooseSavedDataComboBox.addActionListener(actionPerformedHandler);
 
@@ -266,9 +266,16 @@ public class Gui extends JPanel {
         add(footerPanel);
 
         try {
-            ActionPerformedHandler.handleLoadFile();
+            PersistenceDataWrapper dataWrapper = PersisterService.getInstance().doLoadLatest();
+            if (dataWrapper == null) {
+                dataWrapper = PersisterService.getInstance().doLoad(this);
+                ActionPerformedHandler.handleLoadFileWithTime(dataWrapper);
+            } else {
+                ActionPerformedHandler.handleLoadFile(dataWrapper);
+                PersisterService.getInstance().doPersist();
+            }
         } catch (NullPointerException npe) {
-            PersisterService.doPersist(); //initial persist, so that we can load though empty values later
+            PersisterService.getInstance().createToday(); //initial persist, so that we can load though empty values later
         }
     }
 
@@ -371,7 +378,7 @@ public class Gui extends JPanel {
 
     protected static int getTotalSubmittedMinutes() {
         int totalSubmittedMinutes = 0;
-        for (Integer t : persistanceDataWrapper.getTimeRegTimeMap().values()) {
+        for (Integer t : persistenceDataWrapper.getTimeRegTimeMap().values()) {
             totalSubmittedMinutes += t;
         }
         return totalSubmittedMinutes;
@@ -379,9 +386,9 @@ public class Gui extends JPanel {
 
     protected static int getTotalSubmittedMinutesNotPauser() {
         int totalSubmittedMinutes = 0;
-        for (String s : persistanceDataWrapper.getTimeRegTimeMap().keySet()) {
+        for (String s : persistenceDataWrapper.getTimeRegTimeMap().keySet()) {
 //            if (!FROKOST_PAUSER.equalsIgnoreCase(s)) {
-                totalSubmittedMinutes += persistanceDataWrapper.getTimeRegTimeMap().get(s);
+                totalSubmittedMinutes += persistenceDataWrapper.getTimeRegTimeMap().get(s);
 //            }
         }
         return totalSubmittedMinutes;
@@ -421,7 +428,7 @@ public class Gui extends JPanel {
 
     static long getAllreadySubmittetMinutes() {
         long duration = 0l;
-        for (int time : persistanceDataWrapper.getTimeRegTimeMap().values()) {
+        for (int time : persistenceDataWrapper.getTimeRegTimeMap().values()) {
             duration += time;
         }
 
@@ -450,7 +457,7 @@ public class Gui extends JPanel {
                 String ObjButtons[] = {"Yes", "No"};
                 int PromptResult = JOptionPane.showOptionDialog(null, "You normally do NOT want to exit this app, but just minimize it. Are you sure you want to exit? ", "Exit?", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
                 if (PromptResult == JOptionPane.YES_OPTION) {
-                    PersisterService.doPersist();
+                    PersisterService.getInstance().doPersist();
                     System.out.println("bye.");
                     System.exit(0);
                 }

@@ -157,6 +157,19 @@ public class ActionPerformedHandler  implements ActionListener {
         for (String key : persistanceDataWrapperCOPY.getDescriptionMap().keySet()) {
             Gui.persistenceDataWrapper.getDescriptionMap().get(key).setText(persistanceDataWrapperCOPY.getDescriptionMap().get(key).getText());
         }
+
+        for (String key : persistanceDataWrapperCOPY.getTimeRegSubmittedTimeMap().keySet()) {
+            Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().get(key).setText(persistanceDataWrapperCOPY.getTimeRegSubmittedTimeMap().get(key).getText());
+        }
+
+        for (String key : persistanceDataWrapperCOPY.getTimeRegTimeMap().keySet()) {
+            Gui.persistenceDataWrapper.getTimeRegTimeMap().put(key, persistanceDataWrapperCOPY.getTimeRegTimeMap().get(key));
+        }
+
+        for (String key : persistanceDataWrapperCOPY.getTimeRegNameMap().keySet()) {
+            Gui.persistenceDataWrapper.getTimeRegNameMap().put(key, persistanceDataWrapperCOPY.getTimeRegNameMap().get(key));
+        }
+
     }
 
     public static void handleLoadFileWithTime(PersistenceDataWrapper persistanceDataWrapperCOPY) {
@@ -176,7 +189,7 @@ public class ActionPerformedHandler  implements ActionListener {
         handleLoadFile(persistanceDataWrapperCOPY);
     }
 
-    private void handleResetPressed() {
+    public static void handleResetPressed() {
         Gui.persistenceDataWrapper.getTimeRegSubmittedTimeMap().get(1);
         Gui.persistenceDataWrapper.getTimeRegTimeMap().get(1);
 

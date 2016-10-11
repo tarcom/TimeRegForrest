@@ -1,3 +1,8 @@
+
+Break section should always count unless it is current day
+Button for "new day", perhaps besides reset all time
+
+--
 When you open app, make a copy all of yesterdays jira list, do not use default...
  - vedligeholdes evt. med en xml config fil...
  - On new day: load/copy previous day, but reset all times
@@ -19,3 +24,9 @@ persist office in and office out + breaks, make it part of load mechanism
 legacy:
 read configuration from file (or perhaps using the -D startup command...)
  - so you can setup all the jiras that you specifically want as default
+
+
+-------
+
+DONE: If you close today, and restart app, all registred time is cleared !?
+DONE: When you opens, office in time should say NOW, not yesterdays time

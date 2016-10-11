@@ -1,10 +1,13 @@
 package com.skov.timeRegForrest;
 
+import org.apache.logging.log4j.core.appender.rolling.action.Action;
 import org.joda.time.DateTime;
 
+import javax.swing.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -72,7 +75,48 @@ public class PersisterService {
         }
 
         if (latestDate.isAfter(DateTime.parse(EARLY_DATE))) {
-            return doLoad(PersisterService.PREFIX_FILENAME + latestDate.toString(DATE_PATTERN));
+            PersistenceDataWrapper latestPersistenceDataWrapper = doLoad(PersisterService.PREFIX_FILENAME + latestDate.toString(DATE_PATTERN));
+
+            DateTime yesterday = new DateTime();
+            yesterday = yesterday.minusDays(1);
+
+            if (latestDate.isBefore(yesterday)) {
+                System.out.println("found latest file, but it is not from today, resetting time, keeping text.");
+                //only use text, reset times.
+                latestPersistenceDataWrapper.getTimeRegSubmittedTimeMap().get(1);
+                latestPersistenceDataWrapper.getTimeRegTimeMap().get(1);
+
+                for (String s : latestPersistenceDataWrapper.getTimeRegTimeMap().keySet()) {
+                    latestPersistenceDataWrapper.getTimeRegTimeMap().put(s, 0);
+                }
+
+                for (String s : latestPersistenceDataWrapper.getTimeRegSubmittedTimeMap().keySet()) {
+                    JButton jButton = latestPersistenceDataWrapper.getTimeRegSubmittedTimeMap().get(s);
+                    jButton.setText("           ");
+                    latestPersistenceDataWrapper.getTimeRegSubmittedTimeMap().put(s, jButton);
+                }
+                //done resetting time
+
+                //lets also set office in time to now.
+                Calendar officeInCalendar = Calendar.getInstance();
+                // for testing: officeInCalendar.set(Calendar.MINUTE, 41);
+
+                int unroundedMinutes = officeInCalendar.get(Calendar.MINUTE);
+                int mod = unroundedMinutes % 15;
+                officeInCalendar.add(Calendar.MINUTE, mod < 14 ? -mod : (15-mod));
+                //officeInCalendar.set(Calendar.MINUTE, unroundedMinutes + mod);
+
+                String officeInCalendarStr = Gui.sdf.format(officeInCalendar.getTime()) + " ?";
+
+                latestPersistenceDataWrapper.setOfficeIn(officeInCalendarStr);
+
+
+
+            } else {
+                System.out.println("found latest file, it is from today, NOT resetting time and keeping text.");
+            }
+
+            return latestPersistenceDataWrapper;
         }
 
         return null;

@@ -233,21 +233,19 @@ public class Gui extends JPanel {
         jiraGuiRow.addButton("Møder: Kanban", 1604);
         jiraGuiRow.addButton("Møder Xportalen ('alt andet')", 870);
         jiraGuiRow.addButton("Intern tid - sidemandsoplæring, kurser, vidensopbygning, erfa (Viden-16)", 1709);
-      //jiraGuiRow.addButton("Intern tid - Afdelingsmøder (Afd-16)", 1708);
         jiraGuiRow.addButton("Egen administration", 1005);
-        jiraGuiRow.addButton("Ikke TK prioriterede opgaver", 878);
-        jiraGuiRow.addButton("Other - ikke i timesheet (konferencer/kurser)", 885);
-        jiraGuiRow.addButton("Daglig forvaltning", 864);
-        jiraGuiRow.addButton("Sagscontainer daglig forv.", 882);
         jiraGuiRow.addButton("Documentation", 881);
-
-        jiraGuiRow.addButton("Polen mentoring", 1813);
-        jiraGuiRow.addButton("Auto-test", 1883);
-        jiraGuiRow.addButton("TK erhverv samarbejde", 1343);
-        jiraGuiRow.addButton("Ny gar model samarbejde", 1345);
         jiraGuiRow.addButton("Hjælp til projekter", 872);
         jiraGuiRow.addButton("systemansvar", 866);
         jiraGuiRow.addButton("ADM-16", 1708);
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("Other - ikke i timesheet (konferencer/kurser)", 885);
+        jiraGuiRow.addButton("Daglig forvaltning", 864);
+        jiraGuiRow.addButton("Ikke TK prioriterede opgaver", 878);
+
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
+        jiraGuiRow.addButton("");
         jiraGuiRow.addButton("");
         jiraGuiRow.addButton("");
         jiraGuiRow.addButton("");
@@ -272,6 +270,8 @@ public class Gui extends JPanel {
                 ActionPerformedHandler.handleLoadFileWithTime(dataWrapper);
             } else {
                 ActionPerformedHandler.handleLoadFile(dataWrapper);
+                //lets enable office out checkbox
+                Gui.autoUpdateOfficeOutCheckBox.setSelected(true);
                 PersisterService.getInstance().doPersist();
             }
         } catch (NullPointerException npe) {

@@ -438,7 +438,7 @@ public class Gui extends JPanel {
     protected static void createGUI() {
 
         JFrame.setDefaultLookAndFeelDecorated(true);
-        frame = new JFrame("TimeRegForrest");
+        frame = new JFrame("TimeRegForrest v1.1 (2016-12-14)");
 
         Gui buttonContentPane = new Gui();
         buttonContentPane.setOpaque(true);

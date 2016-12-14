@@ -101,9 +101,9 @@ public class ActionPerformedHandler  implements ActionListener {
                         URI workLogUri = issue.getWorklogUri();
                         int minutes = workLogMap.get(issue.getKey());
                         jiraRestClient.getIssueClient().addWorklog(workLogUri,
-                                new WorklogInput(null, null, null, null, "Automatically inserted", new DateTime(), minutes, null, WorklogInput.AdjustEstimate.AUTO, null));
+                                new WorklogInput(null, null, null, null, "Automatically inserted from https://github.com/tarcom/TimeRegForrest using jira REST interface", new DateTime(), minutes, null, WorklogInput.AdjustEstimate.AUTO, null));
                     }
-                    JOptionPane.showMessageDialog(null, "Work logs created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Danke schön!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
             }).fail(new Effect<Throwable>() {
                 public void apply(Throwable throwable) {
